@@ -90,16 +90,10 @@ function InsertionForm({ addExpense, addIncome }) {
           </Form.Group>
         </Row>
         <Row className="mt-3">
-          <Button as={Col} md={{ span: 3, offset: 2 }} variant="success" onClick={addIncomeButton}>
+          <Button as={Col} xs={{ span: 3, offset: 2 }} variant="success" onClick={addIncomeButton}>
             Income
           </Button>
-          <Button
-            as={Col}
-            md={{ span: 3, offset: 1 }}
-            variant="danger"
-            onClick={addExpenseButton}
-            className="mt-2 mt-md-0"
-          >
+          <Button as={Col} xs={{ span: 3, offset: 1 }} variant="danger" onClick={addExpenseButton}>
             Expense
           </Button>
         </Row>
