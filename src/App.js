@@ -1,13 +1,22 @@
 import React from 'react';
-import Container from 'react-bootstrap/Container';
-import './App.css';
-import InsertionForm from './InsertionForm';
+import { Routes, Route } from 'react-router-dom';
+import Header from './layout/Header';
+import Footer from './layout/Footer';
+import Home from './layout/Home';
+import Dashboard from './layout/Dashboard';
 
 function App() {
   return (
-    <Container fluid className="App">
-      <InsertionForm />
-    </Container>
+    <div className="App">
+      <Header />
+      <main>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="dashboard" element={<Dashboard />} />
+        </Routes>
+      </main>
+      <Footer />
+    </div>
   );
 }
 
