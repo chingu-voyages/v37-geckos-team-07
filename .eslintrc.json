@@ -23,6 +23,9 @@
         "ignoreTemplateLiterals": true,
         "ignoreRegExpLiterals": true
       }
-    ]
+    ],
+    "react/jsx-no-bind": "off",
+    "react/prop-types": "off"
+
   }
 }
