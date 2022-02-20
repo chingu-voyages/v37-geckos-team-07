@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Col, Row, Button, InputGroup } from 'react-bootstrap';
 
-function InsertionForm(props) {
+function InsertionForm({ addExpense, addIncome }) {
   const [amount, setAmount] = useState('');
   const [category, setCategory] = useState('');
   const [description, setDescription] = useState('');
@@ -31,7 +31,7 @@ function InsertionForm(props) {
       category !== 'Select a category' ||
       description !== ''
     ) {
-      props.addIncome(amount, category, description);
+      addIncome(amount, category, description);
       setAmount('');
       setCategory('Travel');
       setDescription('');
@@ -40,7 +40,7 @@ function InsertionForm(props) {
 
   function addExpenseButton() {
     if (amount !== '' || category !== '' || description !== '') {
-      props.addExpense(amount, category, description);
+      addExpense(amount, category, description);
       setAmount('');
       setCategory('Travel');
       setDescription('');
@@ -67,7 +67,7 @@ function InsertionForm(props) {
           </Form.Group>
           <Form.Group controlId="category" as={Col}>
             <Form.Select name="category" value={category} onChange={setValue}>
-              <option value="" disabled selected>
+              <option value="" disabled>
                 Select a category
               </option>
               <option value="Travel">Travel</option>
@@ -85,6 +85,7 @@ function InsertionForm(props) {
               value={description}
               onChange={setValue}
               placeholder="Description"
+              style={{ resize: 'none' }}
             />
           </Form.Group>
         </Row>

@@ -9,9 +9,9 @@ function Home() {
     const prevRecords = records.slice();
     prevRecords.push({
       type: 'Income',
-      amount: amount,
-      category: category,
-      description: description,
+      amount,
+      category,
+      description,
     });
     setRecords(prevRecords);
   }
@@ -20,9 +20,9 @@ function Home() {
     const prevRecords = records.slice();
     prevRecords.push({
       type: 'Expense',
-      amount: amount,
-      category: category,
-      description: description,
+      amount,
+      category,
+      description,
     });
     setRecords(prevRecords);
   }
