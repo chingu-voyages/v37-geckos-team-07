@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import Row from 'react-bootstrap/Row';
+import { Row, Col } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
-import InsertionForm from './InsertionForm';
+import InsertionForm from '../components/InsertionForm';
 
 function Home() {
   const [records, setRecords] = useState([]);
@@ -28,9 +28,14 @@ function Home() {
   }
 
   return (
-    <Container fluid>
+    <Container>
       <Row>
-        <InsertionForm addIncome={addIncome} addExpense={addExpense} />
+        <Col sm={12} md={6} lg={4} className="mt-4 ms-3">
+          <InsertionForm addIncome={addIncome} addExpense={addExpense} />
+        </Col>
+        {/* <Col sm={12} md={6} lg={4} className="mt-4 ms-3">
+          <InsertionForm addIncome={addIncome} addExpense={addExpense} />
+        </Col> */}
       </Row>
     </Container>
   );
