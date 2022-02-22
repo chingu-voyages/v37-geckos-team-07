@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form, Col, Row, Button, InputGroup } from 'react-bootstrap';
+import { Form, Col, Row, Button, InputGroup, Container } from 'react-bootstrap';
 
 function InsertionForm({ addExpense, addIncome }) {
   const [amount, setAmount] = useState('');
@@ -48,55 +48,64 @@ function InsertionForm({ addExpense, addIncome }) {
   }
 
   return (
-    <Form>
-      <h4>Add a new record</h4>
-      <Row className="mt-3">
-        <Form.Group controlId="amount" as={Col}>
-          <InputGroup>
-            <InputGroup.Text>$</InputGroup.Text>
+    <Container>
+      <Form>
+        <h4>Add a new record</h4>
+
+        <Row className="mt-3">
+          <Form.Group controlId="amount" as={Col}>
+            <InputGroup>
+              <InputGroup.Text>$</InputGroup.Text>
+              <Form.Control
+                type="number"
+                name="amount"
+                placeholder="Amount"
+                value={amount}
+                onChange={setValue}
+                autoComplete="off"
+              />
+            </InputGroup>
+          </Form.Group>
+          <Form.Group controlId="category" as={Col}>
+            <Form.Select name="category" value={category} onChange={setValue}>
+              <option value="" disabled>
+                Category
+              </option>
+              <option value="Travel">Travel</option>
+              <option value="Bills">Bills</option>
+              <option value="Groceries">Groceries</option>
+              <option value="Salary">Salary</option>
+            </Form.Select>
+          </Form.Group>
+        </Row>
+        <Row>
+          <Form.Group className="mt-5">
             <Form.Control
-              type="number"
-              name="amount"
-              placeholder="Amount"
-              value={amount}
+              as="textarea"
+              name="description"
+              value={description}
               onChange={setValue}
-              autoComplete="off"
+              placeholder="Description"
+              style={{ resize: 'none' }}
             />
-          </InputGroup>
-        </Form.Group>
-        <Form.Group controlId="category" as={Col}>
-          <Form.Select name="category" value={category} onChange={setValue}>
-            <option value="" disabled>
-              Select a category
-            </option>
-            <option value="Travel">Travel</option>
-            <option value="Bills">Bills</option>
-            <option value="Groceries">Groceries</option>
-            <option value="Salary">Salary</option>
-          </Form.Select>
-        </Form.Group>
-      </Row>
-      <Row>
-        <Form.Group className="mt-5">
-          <Form.Control
-            as="textarea"
-            name="description"
-            value={description}
-            onChange={setValue}
-            placeholder="Description"
-            style={{ resize: 'none' }}
-          />
-        </Form.Group>
-      </Row>
-      <Row className="mt-3">
-        <Button as={Col} md={{ span: 3, offset: 2 }} variant="success" onClick={addIncomeButton}>
-          Income
-        </Button>
-        <Button as={Col} md={{ span: 3, offset: 1 }} variant="danger" onClick={addExpenseButton}>
-          Expense
-        </Button>
-      </Row>
-    </Form>
+          </Form.Group>
+        </Row>
+        <Row className="mt-3">
+          <Button as={Col} md={{ span: 3, offset: 2 }} variant="success" onClick={addIncomeButton}>
+            Income
+          </Button>
+          <Button
+            as={Col}
+            md={{ span: 3, offset: 1 }}
+            variant="danger"
+            onClick={addExpenseButton}
+            className="mt-2 mt-md-0"
+          >
+            Expense
+          </Button>
+        </Row>
+      </Form>
+    </Container>
   );
 }
 
