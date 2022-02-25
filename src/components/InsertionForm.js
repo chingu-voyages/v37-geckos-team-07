@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form, Col, Row, Button, InputGroup } from 'react-bootstrap';
+import { Form, Col, Row, Button, InputGroup, Container } from 'react-bootstrap';
 
 function InsertionForm({ addExpense, addIncome }) {
   const [amount, setAmount] = useState('');
@@ -48,9 +48,10 @@ function InsertionForm({ addExpense, addIncome }) {
   }
 
   return (
-    <Col sm={12} md={6} lg={4} className="mt-4 ms-3">
+    <Container>
       <Form>
         <h4>Add a new record</h4>
+
         <Row className="mt-3">
           <Form.Group controlId="amount" as={Col}>
             <InputGroup>
@@ -68,7 +69,7 @@ function InsertionForm({ addExpense, addIncome }) {
           <Form.Group controlId="category" as={Col}>
             <Form.Select name="category" value={category} onChange={setValue}>
               <option value="" disabled>
-                Select a category
+                Category
               </option>
               <option value="Travel">Travel</option>
               <option value="Bills">Bills</option>
@@ -93,12 +94,18 @@ function InsertionForm({ addExpense, addIncome }) {
           <Button as={Col} md={{ span: 3, offset: 2 }} variant="success" onClick={addIncomeButton}>
             Income
           </Button>
-          <Button as={Col} md={{ span: 3, offset: 1 }} variant="danger" onClick={addExpenseButton}>
+          <Button
+            as={Col}
+            md={{ span: 3, offset: 1 }}
+            variant="danger"
+            onClick={addExpenseButton}
+            className="mt-2 mt-md-0"
+          >
             Expense
           </Button>
         </Row>
       </Form>
-    </Col>
+    </Container>
   );
 }
 

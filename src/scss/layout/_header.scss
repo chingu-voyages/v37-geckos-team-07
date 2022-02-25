@@ -5,4 +5,20 @@
     font-family: 'Lobster', cursive;
     font-size: 2rem;
   }
+
+  .nav-link.active,
+  .nav-link:hover {
+    font-weight: bold;
+  }
+
+  // the following rule are applied to prevent layout shift on font-weight: bold
+
+  .nav-link::before {
+    display: block;
+    content: attr(title);
+    font-weight: bold;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+  }
 }
