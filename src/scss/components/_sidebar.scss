@@ -1,0 +1,74 @@
+$mainColor: #6842d2;
+
+.side__bar {
+  width: fit-content;
+  color: $mainColor;
+  padding: 20px 40px;
+  border-right: 2px solid #a370f7;
+
+  .balance {
+    margin-bottom: 30px;
+    h2 {
+      margin-bottom: 0;
+      font-weight: 600;
+    }
+    span {
+      margin-top: 0;
+      font-weight: 600;
+      font-size: 13px;
+    }
+  }
+  .incomes {
+    margin-bottom: 20px;
+    h3 {
+      font-weight: 600;
+    }
+    span {
+      margin-top: 0;
+      font-weight: 600;
+      font-size: 13px;
+    }
+    .current__total {
+      margin-bottom: 10px;
+      h4 {
+        font-size: 22px;
+        font-weight: 600;
+        margin-bottom: 0;
+      }
+      span {
+        margin-top: 0;
+        font-weight: 600;
+        font-size: 13px;
+      }
+    }
+    .goal {
+      margin-bottom: 20px;
+      .top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0;
+      }
+      h3 {
+        font-size: 22px;
+        margin-bottom: 0;
+      }
+      span {
+        margin-top: 0;
+      }
+    }
+    .progress {
+      background-color: gray;
+      border-radius: 4px;
+      height: 15px;
+      position: relative;
+      .percentage {
+        position: absolute;
+        height: 100%;
+        border-radius: 4px;
+        width: 70%;
+        background-color:  $mainColor;
+      }
+    }
+  }
+}
