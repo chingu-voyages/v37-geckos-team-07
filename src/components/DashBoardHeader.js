@@ -10,7 +10,7 @@ function DashBoardHeader() {
       </div>
       <div className="search">
         <input type="text" placeholder="Enter your dates" />
-        <button>
+        <button type="button">
           <BsCalendar3 className="icon" />
         </button>
       </div>
