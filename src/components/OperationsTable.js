@@ -1,5 +1,50 @@
-import React from 'react';
-import { Table } from 'react-bootstrap';
+import { React } from 'react';
+import { Table, CloseButton } from 'react-bootstrap';
+
+const data = [
+  {
+    category: 'Salary',
+    amount: 1200.27,
+    type: 'income',
+    date: '12.02.2022',
+    comment: 'This is some comment to this',
+  },
+  {
+    category: 'Salary',
+    amount: 1200.27,
+    type: 'income',
+    date: '12.02.2022',
+    comment: 'This is another comment',
+  },
+  {
+    category: 'Internet bill',
+    amount: 40.23,
+    type: 'expense',
+    date: '15.02.2022',
+    comment: 'This is definetely a comment',
+  },
+  {
+    category: 'Salary',
+    amount: 1200.27,
+    type: 'income',
+    date: '12.02.2022',
+    comment: 'This is some comment to this',
+  },
+  {
+    category: 'Grocery',
+    amount: 1200.27,
+    type: 'expense',
+    date: '12.02.2022',
+    comment: 'This is another comment',
+  },
+  {
+    category: 'Internet bill',
+    amount: 40.23,
+    type: 'expense',
+    date: '12.02.2022',
+    comment: 'This is definetely a comment',
+  },
+];
 
 function OperationsTable() {
   return (
@@ -14,48 +59,19 @@ function OperationsTable() {
         </tr>
       </thead>
       <tbody>
-        <tr className="operationsTable__row-income">
-          <td>&nbsp;</td>
-          <td>Salary</td>
-          <td>+$1200.27</td>
-          <td>12.02.2022</td>
-          <td>This is some comment to this</td>
-        </tr>
-        <tr className="operationsTable__row-income">
-          <td>&nbsp;</td>
-          <td>Salary</td>
-          <td>+$1200.27</td>
-          <td>12.02.2022</td>
-          <td>This is another comment</td>
-        </tr>
-        <tr className="operationsTable__row-expense">
-          <td>&nbsp;</td>
-          <td>Internet bill</td>
-          <td>-$40.23</td>
-          <td>15.02.2022</td>
-          <td>This is definetely a comment</td>
-        </tr>
-        <tr className="operationsTable__row-income">
-          <td>&nbsp;</td>
-          <td>Salary</td>
-          <td>+$1200.27</td>
-          <td>12.02.2022</td>
-          <td>This is some comment to this</td>
-        </tr>
-        <tr className="operationsTable__row-expense">
-          <td>&nbsp;</td>
-          <td>Grocery</td>
-          <td>-$1200.27</td>
-          <td>21.01.2022</td>
-          <td>This is another comment</td>
-        </tr>
-        <tr className="operationsTable__row-expense">
-          <td>&nbsp;</td>
-          <td>Internet bill</td>
-          <td>-$40.23</td>
-          <td>15.02.2022</td>
-          <td>This is definetely a comment</td>
-        </tr>
+        {data.map((el) => (
+          <tr className={`operationsTable__row operationsTable__row-${el.type}`}>
+            <td>
+              <CloseButton />
+            </td>
+            <td>{el.category}</td>
+            <td>
+              {el.type === 'income' ? '+' : '-'}${el.amount}
+            </td>
+            <td>{el.date}</td>
+            <td>{el.comment}</td>
+          </tr>
+        ))}
       </tbody>
     </Table>
   );
