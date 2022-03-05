@@ -1,5 +1,8 @@
 @import '~bootstrap/scss/bootstrap';
 @import 'layout/header';
 @import 'layout/footer';
+@import 'layout/dashboard';
 @import 'components/totalBalance';
-@import 'components/expensesChart'
+@import 'components/expensesChart';
+@import 'components/dashboardHeader';
+@import 'components/sidebar'

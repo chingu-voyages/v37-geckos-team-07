@@ -1,0 +1,148 @@
+$mainColor: #6842d2;
+
+.dashboard__container {
+  .side__bar {
+    position: sticky;
+    top: 0;
+  }
+  display: flex;
+  .dashboard {
+    flex: 1;
+    padding: 20px;
+    .incomes {
+      display: none;
+      color: $mainColor;
+      margin-bottom: 20px;
+      h3 {
+        font-weight: 600;
+      }
+      span {
+        margin-top: 0;
+        font-weight: 600;
+        font-size: 13px;
+      }
+      .current__total {
+        margin-bottom: 10px;
+        h4 {
+          font-size: 22px;
+          font-weight: 600;
+          margin-bottom: 0;
+        }
+        span {
+          margin-top: 0;
+          font-weight: 600;
+          font-size: 13px;
+        }
+      }
+      .goal {
+        margin-bottom: 20px;
+        .top {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 0;
+        }
+        h3 {
+          font-size: 22px;
+          margin-bottom: 0;
+        }
+        span {
+          margin-top: 0;
+        }
+      }
+      .progress {
+        background-color: gray;
+        border-radius: 4px;
+        height: 15px;
+        position: relative;
+        .percentage {
+          position: absolute;
+          height: 100%;
+          border-radius: 4px;
+          width: 70%;
+          background-color: $mainColor;
+        }
+      }
+    }
+    .charts {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 600px;
+      .pie__chart {
+        width: 450px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        padding: 0px 40px;
+        border: 1px solid black;
+      }
+      .line__chart {
+        width: 450px;
+        height: 100%;
+        padding: 0px 40px;
+        display: flex;
+        align-items: center;
+        border: 1px solid black;
+      }
+    }
+    .title {
+      text-align: center;
+      margin: 30px 0;
+      font-weight: 600;
+    }
+  }
+
+  @media screen and (max-width: 800px) {
+    .sidebar {
+      display: none;
+    }
+    .dashboard {
+      margin-bottom: 40px;
+      .title{
+        display: none;
+      }
+      .incomes {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+       justify-content: center;
+        .compare__total{
+          display: flex;
+          justify-content: space-between;
+          .icon{
+            font-size: 12px;
+            margin-left: 5px;
+          }
+          .goal h4 , .current__total h3{
+            font-size: 17px;
+            font-weight: 600;
+          }
+          .goal{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+          }
+        }
+        .progress{
+          width: 200px;
+          height: 17px;
+        }
+      }
+    }
+    .charts {
+      flex-direction: column;
+      height: 400px;
+      .pie__chart {
+        max-width: 300px;
+        padding: 0px 20px;
+        margin-bottom: 20px;
+      }
+      .line__chart {
+        max-width: 300px;
+        padding: 0px 20px;
+        margin-bottom: 20px;
+      }
+    }
+  }
+}
