@@ -1,9 +1,10 @@
 import React from 'react';
+import { Row, Col, Container } from 'react-bootstrap';
 import { BsCalendar3 } from 'react-icons/bs';
 
 function DashBoardHeader() {
   return (
-    <div className="header">
+    <Container fluid className="header">
       <div className="balance__header">
         <p>Total Balance :</p>
         <h3>$122.56</h3>
@@ -15,7 +16,7 @@ function DashBoardHeader() {
         </button>
       </div>
       <h2>Your income stats :</h2>
-    </div>
+    </Container>
   );
 }
 
