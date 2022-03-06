@@ -1,5 +1,5 @@
 import { React, useState } from 'react';
-import { Table, CloseButton } from 'react-bootstrap';
+import { Table, CloseButton as DeleteButton } from 'react-bootstrap';
 import DeleteModal from './DeleteModal';
 
 const data = [
@@ -84,7 +84,7 @@ function OperationsTable() {
           {rows.map((el) => (
             <tr key={el.id} className={`operationsTable__row operationsTable__row-${el.type}`}>
               <td>
-                <CloseButton onClick={() => removeItem(el)} />
+                <DeleteButton onClick={() => removeItem(el)} />
               </td>
               <td>{el.category}</td>
               <td>

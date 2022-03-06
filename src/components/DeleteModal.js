@@ -10,7 +10,7 @@ function DeleteModal({
   itemDate,
 }) {
   return (
-    <Modal show={showDeleteModal} onHide={handleDeleteModalClose}>
+    <Modal show={showDeleteModal} onHide={handleDeleteModalClose} centered>
       <Modal.Header closeButton>
         <Modal.Title>Confirm changes</Modal.Title>
       </Modal.Header>
