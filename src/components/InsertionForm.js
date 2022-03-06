@@ -50,8 +50,7 @@ function InsertionForm({ addExpense, addIncome }) {
   return (
     <Container>
       <Form>
-        <h4>Add a new record</h4>
-
+        <h4>Enter a new record:</h4>
         <Row className="mt-3">
           <Form.Group controlId="amount" as={Col}>
             <InputGroup>
@@ -79,7 +78,7 @@ function InsertionForm({ addExpense, addIncome }) {
           </Form.Group>
         </Row>
         <Row>
-          <Form.Group className="mt-5">
+          <Form.Group className="mt-3">
             <Form.Control
               as="textarea"
               name="description"
