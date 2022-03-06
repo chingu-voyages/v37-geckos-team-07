@@ -28,7 +28,7 @@ function Dashboard() {
   //     </div>
   //     <div className="dashboard">
   //       <DashBoardHeader />
-  //       <div className="incomes">
+  //       <div className="goals__data">
   //         <h3>Incomes</h3>
   //         <div className="compare__total">
   //           <div className="current__total">
@@ -56,7 +56,7 @@ function Dashboard() {
   //         </div>
   //       </div>
   //       <h2 className="title">Your expenses stats : </h2>
-  //       <div className="incomes">
+  //       <div className="goals__data">
   //         <h3>Expenses</h3>
   //         <div className="compare__total">
   //           <div className="current__total">
@@ -97,7 +97,7 @@ function Dashboard() {
           <Row className="dashboard justify-content-center">
             <DashBoardHeader />
             <div className="area mb-4">
-              <div className="incomes">
+              <div className="goals__data">
                 <h3>Incomes</h3>
                 <div className="compare__total">
                   <div className="current__total">
@@ -127,7 +127,7 @@ function Dashboard() {
             </div>
             <h2 className="title">Your expenses stats : </h2>
             <div className="area">
-              <div className="incomes">
+              <div className="goals__data">
                 <h3>Expenses</h3>
                 <div className="compare__total">
                   <div className="current__total">

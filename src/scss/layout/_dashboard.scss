@@ -11,7 +11,7 @@ $mainColor: #6842d2;
   .dashboard {
     flex: 1;
     padding: 20px;
-    .incomes {
+    .goals__data {
       display: none;
       color: $mainColor;
       margin-bottom: 20px;
@@ -92,7 +92,7 @@ $mainColor: #6842d2;
       .title {
         display: none;
       }
-      .incomes {
+      .goals__data {
         display: flex;
         flex-direction: column;
         align-items: center;

@@ -8,7 +8,7 @@ function SideBar() {
         <h2>$122.56</h2>
         <span>Total Balance</span>
       </div>
-      <div className="incomes">
+      <div className="goals__data">
         <h3>Incomes</h3>
         <div className="current__total">
           <h4>$1022.56</h4>
@@ -25,7 +25,7 @@ function SideBar() {
           <div className="percentage" />
         </div>
       </div>
-      <div className="incomes">
+      <div className="goals__data">
         <h3>Expenses</h3>
         <div className="current__total">
           <h4>$1022.56</h4>
