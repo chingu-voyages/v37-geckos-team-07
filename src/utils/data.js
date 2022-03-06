@@ -1,25 +1,25 @@
 export const budget = [
-    {
-        dataId: 1,
-        name: 'Travel',
-        value: 400,
-      },
-      {
-        dataId: 2,
-        name: 'Bill',
-        value: 300,
-      },
-      {
-        dataId: 3,
-        name: 'Groceries',
-        value: 500,
-      },
-      {
-        dataId: 4,
-        name: 'Salary',
-        value: 200,
-      },
-]
+  {
+    dataId: 1,
+    name: 'Travel',
+    value: 400,
+  },
+  {
+    dataId: 2,
+    name: 'Bill',
+    value: 300,
+  },
+  {
+    dataId: 3,
+    name: 'Groceries',
+    value: 500,
+  },
+  {
+    dataId: 4,
+    name: 'Salary',
+    value: 200,
+  },
+];
 export const UserData = [
   {
     id: 1,
@@ -52,4 +52,3 @@ export const UserData = [
     userLost: 234,
   },
 ];
-
