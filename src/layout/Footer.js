@@ -1,15 +1,63 @@
 import React from 'react';
-import { Container } from 'react-bootstrap';
+import { AiOutlineGithub, AiTwotoneHeart } from 'react-icons/ai';
 
 function Footer() {
   return (
     <footer>
-      <Container>
-        <div className="text-white pt-2 ms-4">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras faucibus dolor at vestibulum
-          pretium.
-        </div>
-      </Container>
+      <p>
+        This project was made with <AiTwotoneHeart className="love__icon" /> and in collaboration
+        with{' '}
+        <a
+          href="https://www.chingu.io/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="contributor"
+        >
+          Chingu Voyages
+        </a>{' '}
+        :
+      </p>
+      <div className="contributors">
+        <a
+          href="https://github.com/TGiulio"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="contributor"
+        >
+          <AiOutlineGithub className="icon" />
+          <p> TGiulio</p>
+        </a>
+
+        <a
+          href="https://github.com/BabkinAV"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="contributor"
+        >
+          <AiOutlineGithub className="icon" />
+          <p>BabkinAV</p>
+        </a>
+
+        <a
+          href="https://github.com/pilauria"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="contributor"
+        >
+          <AiOutlineGithub className="icon" />
+          <p> pilauria</p>
+        </a>
+
+        <a
+          href="https://github.com/williamsgqdev"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="contributor"
+        >
+          <AiOutlineGithub className="icon" />
+          <p> williamsgqdev</p>
+        </a>
+      </div>
     </footer>
   );
 }
