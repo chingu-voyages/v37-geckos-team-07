@@ -32,10 +32,10 @@ function renderLabel(entry) {
 function ExpensesPie() {
   return (
     <div style={{ width: '100%', height: 250 }}>
-      <h4>Expenses in February:</h4>
-      <ResponsiveContainer>
+      <h4>Expenses in February 2022:</h4>
+      <ResponsiveContainer width="100%" height="100%">
         <PieChart>
-          <Pie data={data} cx="50%" cy="50%" outerRadius={80} label={renderLabel} dataKey="value">
+          <Pie data={data} cx="50%" cy="50%" label={renderLabel} dataKey="value">
             {data.map((entry, index) => (
               <Cell key={`cell-${entry.dataId}`} fill={colors[index]} />
             ))}
