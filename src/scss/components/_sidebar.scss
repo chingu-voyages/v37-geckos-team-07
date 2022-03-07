@@ -1,9 +1,8 @@
 $mainColor: #6842d2;
 
 .side__bar {
-  width: fit-content;
   color: $mainColor;
-  padding: 20px 40px;
+  padding: 20px 0;
   border-right: 2px solid #a370f7;
   height: 100%;
 
@@ -19,7 +18,7 @@ $mainColor: #6842d2;
       font-size: 13px;
     }
   }
-  .incomes {
+  .goals__data {
     margin-bottom: 20px;
     h3 {
       font-weight: 600;
@@ -68,7 +67,7 @@ $mainColor: #6842d2;
         height: 100%;
         border-radius: 4px;
         width: 70%;
-        background-color:  $mainColor;
+        background-color: $mainColor;
       }
     }
   }

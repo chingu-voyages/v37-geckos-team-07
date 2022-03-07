@@ -50,8 +50,7 @@ function InsertionForm({ addExpense, addIncome }) {
   return (
     <Container>
       <Form>
-        <h4>Add a new record</h4>
-
+        <h4>Enter a new record:</h4>
         <Row className="mt-3">
           <Form.Group controlId="amount" as={Col}>
             <InputGroup>
@@ -79,7 +78,7 @@ function InsertionForm({ addExpense, addIncome }) {
           </Form.Group>
         </Row>
         <Row>
-          <Form.Group className="mt-5">
+          <Form.Group className="mt-3">
             <Form.Control
               as="textarea"
               name="description"
@@ -91,16 +90,10 @@ function InsertionForm({ addExpense, addIncome }) {
           </Form.Group>
         </Row>
         <Row className="mt-3">
-          <Button as={Col} md={{ span: 3, offset: 2 }} variant="success" onClick={addIncomeButton}>
+          <Button as={Col} xs={{ span: 3, offset: 2 }} variant="success" onClick={addIncomeButton}>
             Income
           </Button>
-          <Button
-            as={Col}
-            md={{ span: 3, offset: 1 }}
-            variant="danger"
-            onClick={addExpenseButton}
-            className="mt-2 mt-md-0"
-          >
+          <Button as={Col} xs={{ span: 3, offset: 1 }} variant="danger" onClick={addExpenseButton}>
             Expense
           </Button>
         </Row>

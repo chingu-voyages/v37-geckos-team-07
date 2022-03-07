@@ -1,15 +1,17 @@
 $mainColor: #6842d2;
 
 .dashboard__container {
+  display: block;
+
   .side__bar {
+    padding-inline: 1vw;
     position: sticky;
     top: 0;
   }
-  display: flex;
   .dashboard {
     flex: 1;
     padding: 20px;
-    .incomes {
+    .goals__data {
       display: none;
       color: $mainColor;
       margin-bottom: 20px;
@@ -68,23 +70,6 @@ $mainColor: #6842d2;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      height: 600px;
-      .pie__chart {
-        width: 450px;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        padding: 0px 40px;
-        border: 1px solid black;
-      }
-      .line__chart {
-        width: 450px;
-        height: 100%;
-        padding: 0px 40px;
-        display: flex;
-        align-items: center;
-        border: 1px solid black;
-      }
     }
     .title {
       text-align: center;
@@ -93,38 +78,44 @@ $mainColor: #6842d2;
     }
   }
 
-  @media screen and (max-width: 800px) {
+  .area {
+    border: 1px solid lightgray;
+    padding: 5%;
+  }
+
+  @media screen and (max-width: 992px) {
     .sidebar {
       display: none;
     }
     .dashboard {
       margin-bottom: 40px;
-      .title{
+      .title {
         display: none;
       }
-      .incomes {
+      .goals__data {
         display: flex;
         flex-direction: column;
         align-items: center;
-       justify-content: center;
-        .compare__total{
+        justify-content: center;
+        .compare__total {
           display: flex;
           justify-content: space-between;
-          .icon{
+          .icon {
             font-size: 12px;
             margin-left: 5px;
           }
-          .goal h4 , .current__total h3{
+          .goal h4,
+          .current__total h3 {
             font-size: 17px;
             font-weight: 600;
           }
-          .goal{
+          .goal {
             display: flex;
             flex-direction: column;
             align-items: flex-end;
           }
         }
-        .progress{
+        .progress {
           width: 200px;
           height: 17px;
         }
@@ -132,15 +123,12 @@ $mainColor: #6842d2;
     }
     .charts {
       flex-direction: column;
-      height: 400px;
       .pie__chart {
         max-width: 300px;
-        padding: 0px 20px;
         margin-bottom: 20px;
       }
       .line__chart {
         max-width: 300px;
-        padding: 0px 20px;
         margin-bottom: 20px;
       }
     }

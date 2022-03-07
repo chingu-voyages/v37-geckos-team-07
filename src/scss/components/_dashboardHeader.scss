@@ -37,7 +37,7 @@
   }
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 992px) {
   .header {
     flex-direction: column;
     justify-content: center;
@@ -48,7 +48,7 @@
       p {
         margin-bottom: 2px;
       }
-      h3{
+      h3 {
         font-size: 25px;
         font-weight: 600;
       }
