@@ -16,7 +16,7 @@ function Dashboard() {
         data: budget.map((b) => b.value),
         backgroundColor: ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'],
         borderColor: 'black',
-        borderWidth: 2,
+        borderWidth: 1,
       },
     ],
   };
@@ -51,10 +51,10 @@ function Dashboard() {
                 </div>
               </div>
               <Row className="charts">
-                <Col md={5} sm={12} className="pie__chart">
+                <Col md={2} sm={12} className="pie__chart">
                   <PieChart chartData={userBudget} />
                 </Col>
-                <Col md={5} sm={12} className="line__chart">
+                <Col md={2} sm={12} className="line__chart">
                   <LineChart chartData={userBudget} />
                 </Col>
               </Row>
@@ -81,10 +81,10 @@ function Dashboard() {
                 </div>
               </div>
               <Row className="charts">
-                <Col md={5} sm={12} className="pie__chart">
+                <Col md={2} sm={12} className="pie__chart">
                   <PieChart chartData={userBudget} />
                 </Col>
-                <Col md={5} sm={12} className="line__chart">
+                <Col md={2} sm={12} className="line__chart">
                   <LineChart chartData={userBudget} />
                 </Col>
               </Row>
