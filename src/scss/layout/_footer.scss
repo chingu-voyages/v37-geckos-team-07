@@ -1,7 +1,68 @@
 footer {
-  position: block;
-  height: 80px;
+
+  position: static;
+  
+  padding-top: 10px;
   bottom: 0;
   width: 100%;
   background-color: $indigo-300;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  p {
+    .love__icon {
+      color: black;
+      font-size: 20px !important;
+    }
+    a {
+      color: white;
+      text-decoration: none;
+      font-weight: 700;
+      &:hover {
+        color: black;
+      }
+    }
+  }
+  .contributors {
+    display: flex;
+    .contributor {
+      display: flex;
+      margin-right: 15px;
+      color: white;
+      text-decoration: none;
+      cursor: pointer;
+      &:hover {
+        color: black;
+      }
+      .icon {
+        font-size: 20px !important;
+        margin-right: 3px;
+      }
+      p {
+        font-size: 15px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  footer {
+    p {
+      font-size: 12px;
+      text-align: center;
+    }
+    .contributors {
+      flex-wrap: wrap;
+      justify-content: center;
+      .contributor {
+        p {
+          font-size: 12px;
+        }
+        .icon {
+          font-size: 12px;
+        }
+      }
+    }
+  }
 }
