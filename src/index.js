@@ -5,12 +5,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 import './scss/App.scss';
 import App from './App';
+import { DataContextProvider } from './store/DataContext';
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <DataContextProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </DataContextProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

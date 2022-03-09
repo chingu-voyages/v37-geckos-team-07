@@ -1,60 +1,11 @@
-import { React, useState } from 'react';
+import { React, useState, useContext } from 'react';
 import { Table, CloseButton as DeleteButton } from 'react-bootstrap';
 import DeleteModal from './DeleteModal';
-
-const data = [
-  {
-    id: 'wq6ocln',
-    category: 'Salary',
-    amount: 1200.27,
-    type: 'income',
-    date: '12.02.2022',
-    comment: 'This is some comment to this',
-  },
-  {
-    id: '1680at0',
-    category: 'Salary',
-    amount: 1200.27,
-    type: 'income',
-    date: '12.02.2022',
-    comment: 'This is another comment',
-  },
-  {
-    id: 'axg1grk',
-    category: 'Internet bill',
-    amount: 40.23,
-    type: 'expense',
-    date: '15.02.2022',
-    comment: 'This is definetely a comment',
-  },
-  {
-    id: 'xzdgzxx',
-    category: 'Salary',
-    amount: 1200.27,
-    type: 'income',
-    date: '12.02.2022',
-    comment: 'This is some comment to this',
-  },
-  {
-    id: 'ico6eax',
-    category: 'Grocery',
-    amount: 1200.27,
-    type: 'expense',
-    date: '12.02.2022',
-    comment: 'This is another comment',
-  },
-  {
-    id: 'b666j4i',
-    category: 'Internet bill',
-    amount: 40.23,
-    type: 'expense',
-    date: '12.02.2022',
-    comment: 'This is definetely a comment',
-  },
-];
+import DataContext from '../store/DataContext';
 
 function OperationsTable() {
-  const [rows, setRows] = useState(data);
+  const dataCtx = useContext(DataContext);
+
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedRow, setSelectedRow] = useState({});
   const removeItem = (row) => {
@@ -65,7 +16,7 @@ function OperationsTable() {
     setShowDeleteModal(false);
   };
   const handleSave = () => {
-    setRows((prevRows) => prevRows.filter((item) => item.id !== selectedRow.id));
+    dataCtx.setRows((prevRows) => prevRows.filter((item) => item.id !== selectedRow.id));
     setShowDeleteModal(false);
   };
   return (
@@ -81,7 +32,7 @@ function OperationsTable() {
           </tr>
         </thead>
         <tbody>
-          {rows.map((el) => (
+          {dataCtx.rows.map((el) => (
             <tr key={el.id} className={`operationsTable__row operationsTable__row-${el.type}`}>
               <td>
                 <DeleteButton onClick={() => removeItem(el)} />
