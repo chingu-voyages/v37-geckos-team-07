@@ -5,7 +5,7 @@ export default [
     amount: 1200.27,
     type: 'income',
     date: '12.02.2022',
-    comment: 'This is some comment to this',
+    description: 'This is some comment to this',
   },
   {
     id: '1680at0',
@@ -13,7 +13,7 @@ export default [
     amount: 1200.27,
     type: 'income',
     date: '12.02.2022',
-    comment: 'This is another comment',
+    description: 'This is another comment',
   },
   {
     id: 'axg1grk',
@@ -21,7 +21,7 @@ export default [
     amount: 150.23,
     type: 'expense',
     date: '15.02.2022',
-    comment: 'This is definetely a comment',
+    description: 'This is definetely a comment',
   },
   {
     id: 'xzdgzxx',
@@ -29,7 +29,7 @@ export default [
     amount: 1200.27,
     type: 'income',
     date: '12.02.2022',
-    comment: 'This is some comment to this',
+    description: 'This is some comment to this',
   },
   {
     id: 'ico6eax',
@@ -37,7 +37,7 @@ export default [
     amount: 1200.27,
     type: 'expense',
     date: '12.02.2022',
-    comment: 'This is another comment',
+    description: 'This is another comment',
   },
   {
     id: 'b666j4i',
@@ -45,6 +45,6 @@ export default [
     amount: 400.23,
     type: 'expense',
     date: '12.02.2022',
-    comment: 'This is definetely a comment',
+    description: 'This is definetely a comment',
   },
 ];

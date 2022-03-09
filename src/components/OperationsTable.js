@@ -8,6 +8,7 @@ function OperationsTable() {
 
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedRow, setSelectedRow] = useState({});
+  const reversedArr = [...dataCtx.rows].reverse();
   const removeItem = (row) => {
     setShowDeleteModal(true);
     setSelectedRow(row);
@@ -19,6 +20,7 @@ function OperationsTable() {
     dataCtx.setRows((prevRows) => prevRows.filter((item) => item.id !== selectedRow.id));
     setShowDeleteModal(false);
   };
+
   return (
     <>
       <Table borderless>
@@ -28,11 +30,11 @@ function OperationsTable() {
             <th>Category</th>
             <th>Amount</th>
             <th>Date</th>
-            <th>Comment</th>
+            <th>Description</th>
           </tr>
         </thead>
         <tbody>
-          {dataCtx.rows.map((el) => (
+          {reversedArr.map((el) => (
             <tr key={el.id} className={`operationsTable__row operationsTable__row-${el.type}`}>
               <td>
                 <DeleteButton onClick={() => removeItem(el)} />
@@ -42,7 +44,7 @@ function OperationsTable() {
                 {el.type === 'income' ? '+' : '-'}${el.amount}
               </td>
               <td>{el.date}</td>
-              <td>{el.comment}</td>
+              <td>{el.description}</td>
             </tr>
           ))}
         </tbody>
