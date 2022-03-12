@@ -23,7 +23,7 @@ function OperationsTable() {
 
   return (
     <>
-      <Table borderless>
+      <Table borderless className="operationsTable">
         <thead>
           <tr>
             <th>&nbsp;</th>
@@ -35,13 +35,18 @@ function OperationsTable() {
         </thead>
         <tbody>
           {reversedArr.map((el) => (
-            <tr key={el.id} className={`operationsTable__row operationsTable__row-${el.type}`}>
+            <tr
+              key={el.id}
+              className={`operationsTable__row operationsTable__row-${
+                el.isIncome ? 'income' : 'expense'
+              }`}
+            >
               <td>
                 <DeleteButton onClick={() => removeItem(el)} />
               </td>
               <td>{el.category}</td>
               <td>
-                {el.type === 'income' ? '+' : '-'}${el.amount}
+                {el.isIncome ? '+' : '-'}${el.amount}
               </td>
               <td>{el.date}</td>
               <td>{el.description}</td>

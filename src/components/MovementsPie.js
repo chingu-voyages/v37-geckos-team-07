@@ -8,12 +8,12 @@ function renderLabel(entry) {
   return `$${entry.value}`;
 }
 
-function ExpensesPie() {
+function MovementsPie() {
   const dataCtx = useContext(DataContext);
-  const data = CalculateTotals(dataCtx.rows, 'expense');
+  const data = CalculateTotals(dataCtx.rows);
   return (
     <div style={{ width: '100%', height: 250 }}>
-      <h4>Expenses in February 2022:</h4>
+      <h4>Movements in February 2022:</h4>
       <ResponsiveContainer width="100%" height="100%">
         <PieChart>
           <Pie data={data} cx="50%" cy="50%" label={renderLabel} dataKey="value">
@@ -32,4 +32,4 @@ function ExpensesPie() {
   );
 }
 
-export default ExpensesPie;
+export default MovementsPie;

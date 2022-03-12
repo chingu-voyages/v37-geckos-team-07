@@ -1,15 +1,13 @@
-function CalculateTotals(array, type) {
+function CalculateTotals(array) {
   const holder = {};
   const obj2 = [];
   let id = 0;
 
   array.forEach((d) => {
-    if (d.type === type) {
-      if (Object.prototype.hasOwnProperty.call(holder, d.category)) {
-        holder[d.category] += d.amount;
-      } else {
-        holder[d.category] = d.amount;
-      }
+    if (Object.prototype.hasOwnProperty.call(holder, d.category)) {
+      holder[d.category] += d.amount;
+    } else {
+      holder[d.category] = d.amount;
     }
   });
 
