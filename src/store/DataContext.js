@@ -1,5 +1,6 @@
 import React, { useState, useMemo, createContext, useCallback, useEffect } from 'react';
 import axios from 'axios';
+import dayjs from 'dayjs';
 import data from './dataRows';
 
 const DataContext = createContext({
@@ -11,7 +12,7 @@ const DataContext = createContext({
 
 const api = 'http://localhost:5005/api/movements';
 const token =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjJhNDZlMDkxY2MyZmVlODE5MWQ0YmEiLCJlbWFpbCI6InRlc3QzNUB0ZXN0LmNvbSIsInVzZXJuYW1lIjoiQW5kcmV5MDEiLCJpYXQiOjE2NDcwNzgyMjQsImV4cCI6MTY0NzA5OTgyNH0.HhpN6UwCkYblnHhGXFrL7Iw_jT1trPeRsnBt8o4vGeQ';
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjJjZTEyNjM4NWJkYTI0M2I4MGRiYTUiLCJlbWFpbCI6InRlc3Q0NEB0ZXN0LmNvbSIsInVzZXJuYW1lIjoiQW5kcmV5MDIiLCJpYXQiOjE2NDcxMDg2NTAsImV4cCI6MTY0NzEzMDI1MH0.owYkeO90SIc7Ys72w6wyyFGAVBhRox7zC0qEpVjebIM';
 
 export function DataContextProvider({ children }) {
   const [rows, setRows] = useState(data);
@@ -20,8 +21,17 @@ export function DataContextProvider({ children }) {
     axios
       .get(api, { headers: { Authorization: `Bearer ${token}` } })
       .then((response) => {
-        const myData = response.data;
+        const myData = response.data.map((el) => ({
+          // eslint-disable-next-line no-underscore-dangle
+          id: el._id,
+          amount: parseFloat(el.amount.$numberDecimal),
+          category: el.category,
+          date: dayjs(el.createdAt).format('DD.MM.YYYY'),
+          description: el.description,
+          isIncome: el.isIncome,
+        }));
         console.log(myData);
+        setRows(myData);
       })
       .catch((error) => {
         // handle error
