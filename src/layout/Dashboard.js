@@ -1,19 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Row, Col, Container } from 'react-bootstrap';
 import { BsFillPencilFill } from 'react-icons/bs';
 import DashBoardHeader from '../components/DashBoardHeader';
 import LineChart from '../components/LineChart';
 import PieChart from '../components/PieChart';
 import SideBar from '../components/SideBar';
-import { budget } from '../utils/data';
+import DataContext from '../store/DataContext';
 
 function Dashboard() {
+  const { chartsData } = useContext(DataContext);
   const userBudget = {
-    labels: budget.map((b) => b.name),
+    labels: chartsData.map((b) => b.name),
     datasets: [
       {
         label: 'Your Income',
-        data: budget.map((b) => b.value),
+        data: chartsData.map((b) => b.value),
         backgroundColor: ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'],
         borderColor: 'black',
         borderWidth: 2,
