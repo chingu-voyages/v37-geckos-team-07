@@ -1,28 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { PieChart, Cell, Pie, LabelList, ResponsiveContainer } from 'recharts';
-
-const data = [
-  {
-    dataId: 1,
-    name: 'Travel',
-    value: 400,
-  },
-  {
-    dataId: 2,
-    name: 'Bill',
-    value: 300,
-  },
-  {
-    dataId: 3,
-    name: 'Groceries',
-    value: 500,
-  },
-  {
-    dataId: 4,
-    name: 'Salary',
-    value: 200,
-  },
-];
+import CalculateTotals from '../utils/CalculateTotals';
+import DataContext from '../store/DataContext';
 
 const colors = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 function renderLabel(entry) {
@@ -30,6 +9,8 @@ function renderLabel(entry) {
 }
 
 function ExpensesPie() {
+  const dataCtx = useContext(DataContext);
+  const data = CalculateTotals(dataCtx.rows, 'expense');
   return (
     <div style={{ width: '100%', height: 250 }}>
       <h4>Expenses in February 2022:</h4>
@@ -37,10 +18,10 @@ function ExpensesPie() {
         <PieChart>
           <Pie data={data} cx="50%" cy="50%" label={renderLabel} dataKey="value">
             {data.map((entry, index) => (
-              <Cell key={`cell-${entry.dataId}`} fill={colors[index]} />
+              <Cell key={`cell-${entry.id}`} fill={colors[index]} />
             ))}
             <LabelList
-              dataKey="name"
+              dataKey="category"
               position="top"
               style={{ textAnchor: 'middle', fill: '#fff', color: '#fff' }}
             />
