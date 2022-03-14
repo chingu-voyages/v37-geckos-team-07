@@ -12,6 +12,7 @@ const DataContext = createContext({
   addIncome: () => {},
   addExpense: () => {},
   deleteMovement: () => {},
+  showAlert: { show: false, variant: '', text: '', headerText: '' },
 });
 
 const api = 'http://localhost:5005/api/movements';
@@ -23,7 +24,20 @@ const authHeaders = { headers: { Authorization: `Bearer ${token}` } };
 export function DataContextProvider({ children }) {
   const [rows, setRows] = useState(data);
   const [chartsData, setChartsData] = useState(budget);
-
+  const [showAlert, setShowAlert] = useState({
+    show: false,
+    variant: '',
+    text: '',
+    headerText: '',
+  });
+  const displayAlert = useCallback((variant, headerText, text) => {
+    setShowAlert({
+      show: true,
+      variant,
+      text,
+      headerText,
+    });
+  }, []);
   const fetchMovementsHandler = useCallback(() => {
     axios
       .get(api, authHeaders)
@@ -37,18 +51,37 @@ export function DataContextProvider({ children }) {
           description: el.description,
           isIncome: el.isIncome,
         }));
-        console.log(myData);
         setRows(myData);
       })
       .catch((error) => {
         // handle error
-        console.log(error);
+        setShowAlert({
+          show: true,
+          variant: 'danger',
+          text: error.message,
+          headerText: 'Error',
+        });
       });
   }, []);
 
   useEffect(() => {
     fetchMovementsHandler();
   }, [fetchMovementsHandler]);
+
+  useEffect(() => {
+    const timerIdentifier = setTimeout(() => {
+      setShowAlert({
+        show: false,
+        variant: '',
+        text: '',
+        headerText: '',
+      });
+    }, 5000);
+
+    return () => {
+      clearTimeout(timerIdentifier);
+    };
+  }, [showAlert]);
 
   const addIncome = useCallback(
     (amnt, categ, descr) => {
@@ -62,13 +95,14 @@ export function DataContextProvider({ children }) {
         .post(api, movement, authHeaders)
         .then(() => {
           fetchMovementsHandler();
+          displayAlert('success', 'Success', 'Database save succesfully');
         })
         .catch((error) => {
           // handle error
-          console.log(error);
+          displayAlert('danger', 'Error', error.message);
         });
     },
-    [fetchMovementsHandler]
+    [fetchMovementsHandler, displayAlert]
   );
 
   const addExpense = useCallback(
@@ -81,15 +115,17 @@ export function DataContextProvider({ children }) {
       };
       axios
         .post(api, movement, authHeaders)
+        // .post(api, movement)
         .then(() => {
           fetchMovementsHandler();
+          displayAlert('success', 'Success', 'Database save succesfully');
         })
         .catch((error) => {
           // handle error
-          console.log(error);
+          displayAlert('danger', 'Error', error.message);
         });
     },
-    [fetchMovementsHandler]
+    [fetchMovementsHandler, displayAlert]
   );
 
   const deleteMovement = useCallback(
@@ -99,18 +135,29 @@ export function DataContextProvider({ children }) {
         .delete(route, authHeaders)
         .then(() => {
           fetchMovementsHandler();
+          displayAlert('success', 'Success', 'Database save succesfully');
         })
         .catch((error) => {
           // handle error
-          console.log(error);
+          displayAlert('danger', 'Error', error.message);
         });
     },
-    [fetchMovementsHandler]
+    [fetchMovementsHandler, displayAlert]
   );
 
   const value = useMemo(
-    () => ({ rows, setRows, addExpense, addIncome, chartsData, setChartsData, deleteMovement }),
-    [rows, addExpense, addIncome, chartsData, deleteMovement]
+    () => ({
+      rows,
+      setRows,
+      addExpense,
+      addIncome,
+      chartsData,
+      setChartsData,
+      deleteMovement,
+      showAlert,
+      setShowAlert,
+    }),
+    [rows, addExpense, addIncome, chartsData, deleteMovement, showAlert]
   );
 
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;

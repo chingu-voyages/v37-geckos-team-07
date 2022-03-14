@@ -1,5 +1,5 @@
 import { React, useState, useContext } from 'react';
-import { Table, CloseButton as DeleteButton } from 'react-bootstrap';
+import { Table, CloseButton as DeleteButton, Alert } from 'react-bootstrap';
 import DeleteModal from './DeleteModal';
 import DataContext from '../store/DataContext';
 
@@ -17,13 +17,28 @@ function OperationsTable() {
     setShowDeleteModal(false);
   };
   const handleSave = () => {
-    // dataCtx.setRows((prevRows) => prevRows.filter((item) => item.id !== selectedRow.id));
     dataCtx.deleteMovement(selectedRow.id);
     setShowDeleteModal(false);
   };
 
   return (
     <>
+      <Alert
+        variant={dataCtx.showAlert.variant}
+        show={dataCtx.showAlert.show}
+        onClose={() =>
+          dataCtx.setShowAlert({
+            show: false,
+            variant: '',
+            text: '',
+            headerText: '',
+          })
+        }
+        dismissible
+      >
+        <Alert.Heading>{dataCtx.showAlert.headerText}</Alert.Heading>
+        <p>{dataCtx.showAlert.text}</p>
+      </Alert>
       <Table borderless className="operationsTable">
         <thead>
           <tr>
