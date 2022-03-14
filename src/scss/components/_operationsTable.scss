@@ -1,4 +1,20 @@
 .operationsTable {
+  &__wrapper {
+    position: relative;
+    padding-top: 5rem;
+  }
+
+  &__alert {
+    position: absolute;
+    top: 0px;
+    left: 3.5rem;
+    min-width: 22rem;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    p {
+      margin-bottom: 0;
+    }
+  }
   &__row {
     td:first-child {
       position: relative;

@@ -22,8 +22,9 @@ function OperationsTable() {
   };
 
   return (
-    <>
+    <div className="operationsTable__wrapper">
       <Alert
+        className="operationsTable__alert"
         variant={dataCtx.showAlert.variant}
         show={dataCtx.showAlert.show}
         onClose={() =>
@@ -78,7 +79,7 @@ function OperationsTable() {
         itemAmount={selectedRow.amount}
         itemDate={selectedRow.date}
       />
-    </>
+    </div>
   );
 }
 
