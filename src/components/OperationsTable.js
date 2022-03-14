@@ -17,7 +17,8 @@ function OperationsTable() {
     setShowDeleteModal(false);
   };
   const handleSave = () => {
-    dataCtx.setRows((prevRows) => prevRows.filter((item) => item.id !== selectedRow.id));
+    // dataCtx.setRows((prevRows) => prevRows.filter((item) => item.id !== selectedRow.id));
+    dataCtx.deleteMovement(selectedRow.id);
     setShowDeleteModal(false);
   };
 

@@ -11,11 +11,14 @@ const DataContext = createContext({
   setRows: () => {},
   addIncome: () => {},
   addExpense: () => {},
+  deleteMovement: () => {},
 });
 
 const api = 'http://localhost:5005/api/movements';
 const token =
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjJjZTEyNjM4NWJkYTI0M2I4MGRiYTUiLCJlbWFpbCI6InRlc3Q0NEB0ZXN0LmNvbSIsInVzZXJuYW1lIjoiQW5kcmV5MDIiLCJpYXQiOjE2NDcxNzcwMjMsImV4cCI6MTY0NzQzNjIyM30.6IbSgQV3QE0im4pYX5eERcXnTxGmomV_awUvJm7O8Ck';
+
+const authHeaders = { headers: { Authorization: `Bearer ${token}` } };
 
 export function DataContextProvider({ children }) {
   const [rows, setRows] = useState(data);
@@ -23,7 +26,7 @@ export function DataContextProvider({ children }) {
 
   const fetchMovementsHandler = useCallback(() => {
     axios
-      .get(api, { headers: { Authorization: `Bearer ${token}` } })
+      .get(api, authHeaders)
       .then((response) => {
         const myData = response.data.map((el) => ({
           // eslint-disable-next-line no-underscore-dangle
@@ -49,39 +52,65 @@ export function DataContextProvider({ children }) {
 
   const addIncome = useCallback(
     (amnt, categ, descr) => {
-      const prevRecords = rows.slice();
-      prevRecords.push({
-        isIncome: true,
+      const movement = {
         amount: parseFloat(amnt),
         category: categ,
         description: descr,
-        id: Math.floor(Math.random() * 10000),
-        date: '09.03.2022',
-      });
-      setRows(prevRecords);
+        isIncome: true,
+      };
+      axios
+        .post(api, movement, authHeaders)
+        .then(() => {
+          fetchMovementsHandler();
+        })
+        .catch((error) => {
+          // handle error
+          console.log(error);
+        });
     },
-    [rows]
+    [fetchMovementsHandler]
   );
 
   const addExpense = useCallback(
     (amnt, categ, descr) => {
-      const prevRecords = rows.slice();
-      prevRecords.push({
-        isIncome: false,
+      const movement = {
         amount: parseFloat(amnt),
         category: categ,
         description: descr,
-        id: Math.floor(Math.random() * 10000),
-        date: '09.03.2022',
-      });
-      setRows(prevRecords);
+        isIncome: false,
+      };
+      axios
+        .post(api, movement, authHeaders)
+        .then(() => {
+          fetchMovementsHandler();
+        })
+        .catch((error) => {
+          // handle error
+          console.log(error);
+        });
     },
-    [rows]
+    [fetchMovementsHandler]
+  );
+
+  const deleteMovement = useCallback(
+    (movementId) => {
+      const route = `${api}/${movementId}`;
+      axios
+        .delete(route, authHeaders)
+        .then(() => {
+          fetchMovementsHandler();
+        })
+        .catch((error) => {
+          // handle error
+          console.log(error);
+        });
+    },
+    [fetchMovementsHandler]
   );
 
   const value = useMemo(
-    () => ({ rows, setRows, addExpense, addIncome, chartsData, setChartsData }),
-    [rows, addExpense, addIncome, chartsData]
+    () => ({ rows, setRows, addExpense, addIncome, chartsData, setChartsData, deleteMovement }),
+    [rows, addExpense, addIncome, chartsData, deleteMovement]
   );
 
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;
