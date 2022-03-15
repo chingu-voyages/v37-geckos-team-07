@@ -1,5 +1,5 @@
 import { React, useState, useContext } from 'react';
-import { Table, CloseButton as DeleteButton } from 'react-bootstrap';
+import { Table, CloseButton as DeleteButton, Alert } from 'react-bootstrap';
 import DeleteModal from './DeleteModal';
 import DataContext from '../store/DataContext';
 
@@ -17,13 +17,30 @@ function OperationsTable() {
     setShowDeleteModal(false);
   };
   const handleSave = () => {
-    dataCtx.setRows((prevRows) => prevRows.filter((item) => item.id !== selectedRow.id));
+    dataCtx.deleteMovement(selectedRow.id);
     setShowDeleteModal(false);
   };
 
   return (
-    <>
-      <Table borderless>
+    <div className="operationsTable__wrapper">
+      <Alert
+        className="operationsTable__alert"
+        variant={dataCtx.showAlert.variant}
+        show={dataCtx.showAlert.show}
+        onClose={() =>
+          dataCtx.setShowAlert({
+            show: false,
+            variant: '',
+            text: '',
+            headerText: '',
+          })
+        }
+        dismissible
+      >
+        <Alert.Heading>{dataCtx.showAlert.headerText}</Alert.Heading>
+        <p>{dataCtx.showAlert.text}</p>
+      </Alert>
+      <Table borderless className="operationsTable">
         <thead>
           <tr>
             <th>&nbsp;</th>
@@ -35,13 +52,18 @@ function OperationsTable() {
         </thead>
         <tbody>
           {reversedArr.map((el) => (
-            <tr key={el.id} className={`operationsTable__row operationsTable__row-${el.type}`}>
+            <tr
+              key={el.id}
+              className={`operationsTable__row operationsTable__row-${
+                el.isIncome ? 'income' : 'expense'
+              }`}
+            >
               <td>
                 <DeleteButton onClick={() => removeItem(el)} />
               </td>
               <td>{el.category}</td>
               <td>
-                {el.type === 'income' ? '+' : '-'}${el.amount}
+                {el.isIncome ? '+' : '-'}${el.amount}
               </td>
               <td>{el.date}</td>
               <td>{el.description}</td>
@@ -57,7 +79,7 @@ function OperationsTable() {
         itemAmount={selectedRow.amount}
         itemDate={selectedRow.date}
       />
-    </>
+    </div>
   );
 }
 

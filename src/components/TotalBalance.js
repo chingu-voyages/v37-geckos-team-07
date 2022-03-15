@@ -4,7 +4,7 @@ import DataContext from '../store/DataContext';
 function TotalBalance() {
   const dataCtx = useContext(DataContext);
   const totalSum = Number(
-    dataCtx.rows.reduce((sum, el) => (el.type === 'income' ? sum + el.amount : sum - el.amount), 0)
+    dataCtx.rows.reduce((sum, el) => (el.isIncome ? sum + el.amount : sum - el.amount), 0)
   ).toFixed(2);
   return (
     <>
