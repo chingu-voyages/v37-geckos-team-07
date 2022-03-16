@@ -2,12 +2,14 @@ import { React, useState, useContext } from 'react';
 import { Table, CloseButton as DeleteButton } from 'react-bootstrap';
 import DeleteModal from './DeleteModal';
 import DataContext from '../store/DataContext';
+import PaginationBar from './PaginationBar';
 
 function OperationsTable() {
   const dataCtx = useContext(DataContext);
 
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedRow, setSelectedRow] = useState({});
+  const [page, setPage] = useState(1);
   const reversedArr = [...dataCtx.rows].reverse();
   const removeItem = (row) => {
     setShowDeleteModal(true);
@@ -20,6 +22,16 @@ function OperationsTable() {
     dataCtx.setRows((prevRows) => prevRows.filter((item) => item.id !== selectedRow.id));
     setShowDeleteModal(false);
   };
+  const handlePage = (number) => {
+    setPage(number);
+    console.log(number);
+  };
+  const rowsPerPage = 3;
+  const pageNumber = Math.ceil(reversedArr.length / rowsPerPage);
+  let pageRows = reversedArr.slice((page - 1) * rowsPerPage, page * rowsPerPage);
+  // setTimeout(() => {
+  //   handlePage(2);
+  // }, 2000);
 
   return (
     <>
@@ -34,7 +46,7 @@ function OperationsTable() {
           </tr>
         </thead>
         <tbody>
-          {reversedArr.map((el) => (
+          {pageRows.map((el) => (
             <tr key={el.id} className={`operationsTable__row operationsTable__row-${el.type}`}>
               <td>
                 <DeleteButton onClick={() => removeItem(el)} />
@@ -49,6 +61,7 @@ function OperationsTable() {
           ))}
         </tbody>
       </Table>
+      <PaginationBar pageNumber={pageNumber} handlePage={handlePage} />
       <DeleteModal
         showDeleteModal={showDeleteModal}
         handleDeleteModalClose={handleDeleteModalClose}
