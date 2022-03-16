@@ -1,7 +1,9 @@
 $mainColor: #6842d2;
 
 .dashboard__container {
-  display: block;
+  display: flex;
+
+  flex: 1 0 auto;
 
   .side__bar {
     padding-inline: 1vw;
