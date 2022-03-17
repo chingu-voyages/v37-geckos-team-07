@@ -1,62 +1,14 @@
-import { React, useState } from 'react';
-import { Table, CloseButton as DeleteButton } from 'react-bootstrap';
+import { React, useState, useContext } from 'react';
+import { Table, CloseButton as DeleteButton, Alert } from 'react-bootstrap';
 import DeleteModal from './DeleteModal';
-
-const data = [
-  {
-    id: 'wq6ocln',
-    category: 'Salary',
-    amount: 1200.27,
-    type: 'income',
-    date: '12.02.2022',
-    comment: 'This is some comment to this',
-  },
-  {
-    id: '1680at0',
-    category: 'Salary',
-    amount: 1200.27,
-    type: 'income',
-    date: '12.02.2022',
-    comment: 'This is another comment',
-  },
-  {
-    id: 'axg1grk',
-    category: 'Internet bill',
-    amount: 40.23,
-    type: 'expense',
-    date: '15.02.2022',
-    comment: 'This is definetely a comment',
-  },
-  {
-    id: 'xzdgzxx',
-    category: 'Salary',
-    amount: 1200.27,
-    type: 'income',
-    date: '12.02.2022',
-    comment: 'This is some comment to this',
-  },
-  {
-    id: 'ico6eax',
-    category: 'Grocery',
-    amount: 1200.27,
-    type: 'expense',
-    date: '12.02.2022',
-    comment: 'This is another comment',
-  },
-  {
-    id: 'b666j4i',
-    category: 'Internet bill',
-    amount: 40.23,
-    type: 'expense',
-    date: '12.02.2022',
-    comment: 'This is definetely a comment',
-  },
-];
+import DataContext from '../store/DataContext';
 
 function OperationsTable() {
-  const [rows, setRows] = useState(data);
+  const dataCtx = useContext(DataContext);
+
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedRow, setSelectedRow] = useState({});
+  const reversedArr = [...dataCtx.rows].reverse();
   const removeItem = (row) => {
     setShowDeleteModal(true);
     setSelectedRow(row);
@@ -65,33 +17,56 @@ function OperationsTable() {
     setShowDeleteModal(false);
   };
   const handleSave = () => {
-    setRows((prevRows) => prevRows.filter((item) => item.id !== selectedRow.id));
+    dataCtx.deleteMovement(selectedRow.id);
     setShowDeleteModal(false);
   };
+
   return (
-    <>
-      <Table borderless>
+    <div className="operationsTable__wrapper">
+      <Alert
+        className="operationsTable__alert"
+        variant={dataCtx.showAlert.variant}
+        show={dataCtx.showAlert.show}
+        onClose={() =>
+          dataCtx.setShowAlert({
+            show: false,
+            variant: '',
+            text: '',
+            headerText: '',
+          })
+        }
+        dismissible
+      >
+        <Alert.Heading>{dataCtx.showAlert.headerText}</Alert.Heading>
+        <p>{dataCtx.showAlert.text}</p>
+      </Alert>
+      <Table borderless className="operationsTable">
         <thead>
           <tr>
             <th>&nbsp;</th>
             <th>Category</th>
             <th>Amount</th>
             <th>Date</th>
-            <th>Comment</th>
+            <th>Description</th>
           </tr>
         </thead>
         <tbody>
-          {rows.map((el) => (
-            <tr key={el.id} className={`operationsTable__row operationsTable__row-${el.type}`}>
+          {reversedArr.map((el) => (
+            <tr
+              key={el.id}
+              className={`operationsTable__row operationsTable__row-${
+                el.isIncome ? 'income' : 'expense'
+              }`}
+            >
               <td>
                 <DeleteButton onClick={() => removeItem(el)} />
               </td>
               <td>{el.category}</td>
               <td>
-                {el.type === 'income' ? '+' : '-'}${el.amount}
+                {el.isIncome ? '+' : '-'}${el.amount}
               </td>
               <td>{el.date}</td>
-              <td>{el.comment}</td>
+              <td>{el.description}</td>
             </tr>
           ))}
         </tbody>
@@ -104,7 +79,7 @@ function OperationsTable() {
         itemAmount={selectedRow.amount}
         itemDate={selectedRow.date}
       />
-    </>
+    </div>
   );
 }
 

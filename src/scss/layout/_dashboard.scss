@@ -68,7 +68,7 @@ $mainColor: #6842d2;
     }
     .charts {
       display: flex;
-      justify-content: space-between;
+      justify-content: space-evenly;
       align-items: center;
     }
     .title {
@@ -80,7 +80,7 @@ $mainColor: #6842d2;
 
   .area {
     border: 1px solid lightgray;
-    padding: 5%;
+    padding: 1%;
   }
 
   @media screen and (max-width: 992px) {

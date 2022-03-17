@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Form, Col, Row, Button, InputGroup, Container } from 'react-bootstrap';
+import DataContext from '../store/DataContext';
 
-function InsertionForm({ addExpense, addIncome }) {
-  const [amount, setAmount] = useState('');
+function InsertionForm() {
+  const [amount, setAmount] = useState(0);
   const [category, setCategory] = useState('');
   const [description, setDescription] = useState('');
+  const dataCtx = useContext(DataContext);
 
   function setValue(e) {
     switch (e.target.name) {
@@ -31,7 +33,7 @@ function InsertionForm({ addExpense, addIncome }) {
       category !== 'Select a category' ||
       description !== ''
     ) {
-      addIncome(amount, category, description);
+      dataCtx.addIncome(amount, category, description);
       setAmount('');
       setCategory('Travel');
       setDescription('');
@@ -40,7 +42,7 @@ function InsertionForm({ addExpense, addIncome }) {
 
   function addExpenseButton() {
     if (amount !== '' || category !== '' || description !== '') {
-      addExpense(amount, category, description);
+      dataCtx.addExpense(amount, category, description);
       setAmount('');
       setCategory('Travel');
       setDescription('');

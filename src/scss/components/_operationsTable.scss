@@ -1,4 +1,24 @@
 .operationsTable {
+  &__wrapper {
+    position: relative;
+    padding-top: 5rem;
+  }
+
+  &__alert {
+    position: absolute;
+    top: 0px;
+    left: 3.5rem;
+    min-width: 22rem;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    p {
+      margin-bottom: 0;
+    }
+    @media screen and (max-width: 500px) {
+      font-size: 14px;
+      min-width: 10rem;
+    }
+  }
   &__row {
     td:first-child {
       position: relative;
@@ -22,5 +42,8 @@
         }
       }
     }
+  }
+  @media screen and (max-width: 500px) {
+    font-size: 12px;
   }
 }
