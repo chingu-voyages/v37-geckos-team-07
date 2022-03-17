@@ -71,6 +71,9 @@ function OperationsTable() {
           ))}
         </tbody>
       </Table>
+      {!reversedArr.length && (
+        <p className="text-center">No data to display. Please add movements</p>
+      )}
       <DeleteModal
         showDeleteModal={showDeleteModal}
         handleDeleteModalClose={handleDeleteModalClose}
