@@ -14,20 +14,23 @@ function MovementsPie() {
   return (
     <div style={{ width: '100%', height: 250 }}>
       <h4>Movements in February 2022:</h4>
-      <ResponsiveContainer width="100%" height="100%">
-        <PieChart>
-          <Pie data={data} cx="50%" cy="50%" label={renderLabel} dataKey="value">
-            {data.map((entry, index) => (
-              <Cell key={`cell-${entry.id}`} fill={colors[index]} />
-            ))}
-            <LabelList
-              dataKey="category"
-              position="top"
-              style={{ textAnchor: 'middle', fill: '#fff', color: '#fff' }}
-            />
-          </Pie>
-        </PieChart>
-      </ResponsiveContainer>
+      {data.length > 0 && (
+        <ResponsiveContainer width="100%" height="100%">
+          <PieChart>
+            <Pie data={data} cx="50%" cy="50%" label={renderLabel} dataKey="value">
+              {data.map((entry, index) => (
+                <Cell key={`cell-${entry.id}`} fill={colors[index]} />
+              ))}
+              <LabelList
+                dataKey="category"
+                position="top"
+                style={{ textAnchor: 'middle', fill: '#fff', color: '#fff' }}
+              />
+            </Pie>
+          </PieChart>
+        </ResponsiveContainer>
+      )}
+      {!data.length && <p>No data to display.</p>}
     </div>
   );
 }
