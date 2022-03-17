@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Header from './layout/Header';
 import Footer from './layout/Footer';
 import Home from './layout/Home';
 import Dashboard from './layout/Dashboard';
+import SignupPage from './layout/SignupPage';
+import LoginPage from './layout/LoginPage';
+import NotFoundPage from './layout/NotFoundPage';
+import PrivateRoute from './components/PrivateRoute';
+import AnonRoute from './components/AnonRoute';
+import Landing from './layout/Landing';
 
 function App() {
   return (
@@ -11,8 +17,15 @@ function App() {
       <Header />
       <main>
         <Routes>
+          <Route index element={<Landing />} />
+          <Route path="landing" element={<Landing />} />
           <Route path="/" element={<Home />} />
+
           <Route path="dashboard" element={<Dashboard />} />
+          <Route path="/signup" element={<SignupPage />} />
+          <Route path="/login" element={<LoginPage />} />
+
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>
       <Footer />
@@ -21,3 +34,7 @@ function App() {
 }
 
 export default App;
+
+<Route exact path="dashboard" element={<PrivateRoute />}>
+  <Route exact path="/" element={<Home />} />
+</Route>;

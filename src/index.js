@@ -6,12 +6,15 @@ import './index.css';
 import './scss/App.scss';
 import App from './App';
 import { DataContextProvider } from './store/DataContext';
+import { AuthProviderWrapper } from './store/auth.context';
 
 ReactDOM.render(
   <React.StrictMode>
     <DataContextProvider>
       <BrowserRouter>
-        <App />
+        <AuthProviderWrapper>
+          <App />
+        </AuthProviderWrapper>
       </BrowserRouter>
     </DataContextProvider>
   </React.StrictMode>,
