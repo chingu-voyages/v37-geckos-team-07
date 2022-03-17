@@ -66,7 +66,9 @@ function LoginPage(props) {
           </Form.Group>
           <Form.Group className="d-flex justify-content-center mb-4" controlId="remember-me" />
           <div className="d-grid">
-            <Button className="button-big">Log in</Button>
+            <Button type="submit" className="button-big">
+              Log in
+            </Button>
           </div>
           <div className="d-grid">
             <p className="text-dark mt-5 mb-0">Don't have an account yet?</p>

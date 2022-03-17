@@ -80,7 +80,9 @@ function SignupPage(props) {
           </Form.Group>
           <Form.Group className="d-flex justify-content-center mb-4" controlId="remember-me" />
           <div className="d-grid">
-            <Button className="button-big">Sign Up</Button>
+            <Button type="submit" className="button-big">
+              Sign Up
+            </Button>
           </div>
           <div className="d-grid">
             <p className="text-dark mt-5 mb-0">Already have an account?</p>
@@ -90,6 +92,8 @@ function SignupPage(props) {
           </div>
           <p className="mt-5 text-muted">&copy; 2021-2022 geckespence</p>
         </Form>
+
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
       </Container>
     </div>
   );
