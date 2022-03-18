@@ -6,15 +6,34 @@ import LineChart from '../components/LineChart';
 import PieChart from '../components/PieChart';
 import SideBar from '../components/SideBar';
 import DataContext from '../store/DataContext';
+import CalculateTotals from '../utils/CalculateTotals';
 
 function Dashboard() {
-  const { chartsData } = useContext(DataContext);
-  const userBudget = {
-    labels: chartsData.map((b) => b.name),
+  // const { chartsData } = useContext(DataContext);
+  const dataCtx = useContext(DataContext);
+  // Aggregating the data
+  const dataIncome = CalculateTotals(dataCtx.rows, 'income');
+  const dataExpense = CalculateTotals(dataCtx.rows, 'expense');
+
+  const incomeBudget = {
+    labels: dataIncome.map((b) => b.category),
     datasets: [
       {
         label: 'Your Income',
-        data: chartsData.map((b) => b.value),
+        data: dataIncome.map((b) => b.value),
+        backgroundColor: ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'],
+        borderColor: 'black',
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  const expenseBudget = {
+    labels: dataExpense.map((b) => b.category),
+    datasets: [
+      {
+        label: 'Your Expense',
+        data: dataExpense.map((b) => b.value),
         backgroundColor: ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'],
         borderColor: 'black',
         borderWidth: 1,
@@ -53,10 +72,10 @@ function Dashboard() {
               </div>
               <Row className="charts">
                 <Col md={3} sm={12} className="pie__chart">
-                  <PieChart chartData={userBudget} />
+                  <PieChart chartData={incomeBudget} />
                 </Col>
                 <Col md={4} sm={12} className="line__chart">
-                  <LineChart chartData={userBudget} />
+                  <LineChart chartData={incomeBudget} />
                 </Col>
               </Row>
             </div>
@@ -83,10 +102,10 @@ function Dashboard() {
               </div>
               <Row className="charts">
                 <Col md={3} sm={12} className="pie__chart">
-                  <PieChart chartData={userBudget} />
+                  <PieChart chartData={expenseBudget} />
                 </Col>
                 <Col md={4} sm={12} className="line__chart">
-                  <LineChart chartData={userBudget} />
+                  <LineChart chartData={expenseBudget} />
                 </Col>
               </Row>
             </div>
