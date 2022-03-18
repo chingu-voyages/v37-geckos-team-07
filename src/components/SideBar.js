@@ -1,17 +1,24 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { BsFillPencilFill } from 'react-icons/bs';
+import DataContext from '../store/DataContext';
+import { CalculateBalance } from '../utils/CalculateTotals';
 
 function SideBar() {
+  const dataCtx = useContext(DataContext);
+  // Aggregating the data
+  const Balance = CalculateBalance(dataCtx.rows);
+  const totalIncomes = CalculateBalance(dataCtx.rows, 'incomes');
+  const totalExpenses = CalculateBalance(dataCtx.rows, 'expenses');
   return (
     <div className="side__bar">
       <div className="balance">
-        <h2>$122.56</h2>
+        <h2>${Balance}</h2>
         <span>Total Balance</span>
       </div>
       <div className="goals__data">
         <h3>Incomes</h3>
         <div className="current__total">
-          <h4>$1022.56</h4>
+          <h4>${totalIncomes}</h4>
           <span>Current total</span>
         </div>
         <div className="goal">
@@ -28,7 +35,7 @@ function SideBar() {
       <div className="goals__data">
         <h3>Expenses</h3>
         <div className="current__total">
-          <h4>$1022.56</h4>
+          <h4>${totalExpenses}</h4>
           <span>Current total</span>
         </div>
         <div className="goal">

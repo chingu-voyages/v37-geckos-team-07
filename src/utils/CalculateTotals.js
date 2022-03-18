@@ -30,4 +30,21 @@ function CalculateTotals(array, type) {
   return obj2;
 }
 
+function CalculateBalance(arr, type) {
+  let result;
+  if (type === 'incomes') {
+    result = Number(arr.reduce((sum, el) => (el.isIncome ? sum + el.amount : sum), 0));
+  } else if (type === 'expenses') {
+    result = Number(arr.reduce((sum, el) => (!el.isIncome ? sum + el.amount : sum), 0));
+  } else {
+    result = Number(arr.reduce((sum, el) => (el.isIncome ? sum + el.amount : sum - el.amount), 0));
+  }
+
+  const TotalBalance = Number(result).toFixed(2);
+
+  return TotalBalance;
+}
+
+export { CalculateBalance };
+
 export default CalculateTotals;

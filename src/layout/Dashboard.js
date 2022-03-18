@@ -6,14 +6,15 @@ import LineChart from '../components/LineChart';
 import PieChart from '../components/PieChart';
 import SideBar from '../components/SideBar';
 import DataContext from '../store/DataContext';
-import CalculateTotals from '../utils/CalculateTotals';
+import CalculateTotals, { CalculateBalance } from '../utils/CalculateTotals';
 
 function Dashboard() {
-  // const { chartsData } = useContext(DataContext);
   const dataCtx = useContext(DataContext);
   // Aggregating the data
   const dataIncome = CalculateTotals(dataCtx.rows, 'income');
   const dataExpense = CalculateTotals(dataCtx.rows, 'expense');
+  const totalIncomes = CalculateBalance(dataCtx.rows, 'incomes');
+  const totalExpenses = CalculateBalance(dataCtx.rows, 'expenses');
 
   const incomeBudget = {
     labels: dataIncome.map((b) => b.category),
@@ -55,7 +56,7 @@ function Dashboard() {
                 <h3>Incomes</h3>
                 <div className="compare__total">
                   <div className="current__total">
-                    <h4>$1022.56&nbsp;/ </h4>
+                    <h4>${totalIncomes}&nbsp;/ </h4>
                     <span>Current total</span>
                   </div>
                   <div className="goal">
@@ -85,7 +86,7 @@ function Dashboard() {
                 <h3>Expenses</h3>
                 <div className="compare__total">
                   <div className="current__total">
-                    <h4>$1022.56&nbsp;/ </h4>
+                    <h4>${totalExpenses}&nbsp;/ </h4>
                     <span>Current total</span>
                   </div>
                   <div className="goal">
