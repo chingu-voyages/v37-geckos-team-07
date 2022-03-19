@@ -1,11 +1,10 @@
 import React, { useContext } from 'react';
 import DataContext from '../store/DataContext';
+import { CalculateBalance } from '../utils/CalculateTotals';
 
 function TotalBalance() {
   const dataCtx = useContext(DataContext);
-  const totalSum = Number(
-    dataCtx.rows.reduce((sum, el) => (el.type === 'income' ? sum + el.amount : sum - el.amount), 0)
-  ).toFixed(2);
+  const totalSum = CalculateBalance(dataCtx.rows);
   return (
     <>
       <h4>Total balance:</h4>
