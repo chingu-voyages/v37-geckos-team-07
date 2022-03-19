@@ -10,20 +10,16 @@ function PaginationBar({ pageNumber, handlePage }) {
   };
 
   const numbers = [];
-  // numbers.push(<Pagination.First />);
-  // items.push(<Pagination.Prev />);
 
   for (let i = 1; i <= pageNumber; i++) {
     numbers.push(i);
   }
-  // items.push(<Pagination.Next />);
-  // items.push(<Pagination.Last />);
 
   return (
-    <Row className="justify-content-center">
-      <Pagination>
+    <Row>
+      <Pagination className="justify-content-center">
         {numbers.map((number) => (
-          <Pagination.Item key={number} active={number === isActive} onClick={pageClick}>
+          <Pagination.Item size="sm" key={number} active={number === isActive} onClick={pageClick}>
             {number}
           </Pagination.Item>
         ))}

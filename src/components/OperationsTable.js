@@ -24,14 +24,10 @@ function OperationsTable() {
   };
   const handlePage = (number) => {
     setPage(number);
-    console.log(number);
   };
-  const rowsPerPage = 3;
+  const rowsPerPage = 5;
   const pageNumber = Math.ceil(reversedArr.length / rowsPerPage);
-  let pageRows = reversedArr.slice((page - 1) * rowsPerPage, page * rowsPerPage);
-  // setTimeout(() => {
-  //   handlePage(2);
-  // }, 2000);
+  const pageRows = reversedArr.slice((page - 1) * rowsPerPage, page * rowsPerPage);
 
   return (
     <>
