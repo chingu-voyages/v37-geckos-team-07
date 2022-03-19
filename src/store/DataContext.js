@@ -3,6 +3,7 @@ import axios from 'axios';
 import dayjs from 'dayjs';
 import budget from '../utils/data';
 import data from './dataRows';
+import { scryRenderedComponentsWithType } from 'react-dom/test-utils';
 
 const DataContext = createContext({
   rows: [],
@@ -16,8 +17,7 @@ const DataContext = createContext({
 });
 
 const api = 'https://geckspence.herokuapp.com/api/movements';
-const token =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjJjZTEyNjM4NWJkYTI0M2I4MGRiYTUiLCJlbWFpbCI6InRlc3Q0NEB0ZXN0LmNvbSIsInVzZXJuYW1lIjoiQW5kcmV5MDIiLCJpYXQiOjE2NDc0MzU3NzAsImV4cCI6MTY0ODY0NTM3MH0.8mKpoUDSizuBGDBypik-exgtL2Xpg_fzAJqiWIlq3gQ';
+const token = '';
 
 const authHeaders = { headers: { Authorization: `Bearer ${token}` } };
 
@@ -65,7 +65,9 @@ export function DataContextProvider({ children }) {
   }, []);
 
   useEffect(() => {
-    fetchMovementsHandler();
+    if (token !== '') {
+      fetchMovementsHandler();
+    }
   }, [fetchMovementsHandler]);
 
   useEffect(() => {
@@ -91,16 +93,22 @@ export function DataContextProvider({ children }) {
         description: descr,
         isIncome: true,
       };
-      axios
-        .post(api, movement, authHeaders)
-        .then(() => {
-          fetchMovementsHandler();
-          displayAlert('success', 'Success', 'Database save succesfully');
-        })
-        .catch((error) => {
-          // handle error
-          displayAlert('danger', 'Error', error.message);
-        });
+      if (token !== '') {
+        axios
+          .post(api, movement, authHeaders)
+          .then(() => {
+            fetchMovementsHandler();
+            displayAlert('success', 'Success', 'Database save succesfully');
+          })
+          .catch((error) => {
+            // handle error
+            displayAlert('danger', 'Error', error.message);
+          });
+      } else {
+        movement.date = dayjs(Date()).format('DD.MM.YYYY');
+        movement.id = Math.round(Math.random() * 10000000);
+        rows.push(movement);
+      }
     },
     [fetchMovementsHandler, displayAlert]
   );
@@ -113,17 +121,23 @@ export function DataContextProvider({ children }) {
         description: descr,
         isIncome: false,
       };
-      axios
-        .post(api, movement, authHeaders)
-        // .post(api, movement)
-        .then(() => {
-          fetchMovementsHandler();
-          displayAlert('success', 'Success', 'Database save succesfully');
-        })
-        .catch((error) => {
-          // handle error
-          displayAlert('danger', 'Error', error.message);
-        });
+      if (token !== '') {
+        axios
+          .post(api, movement, authHeaders)
+          // .post(api, movement)
+          .then(() => {
+            fetchMovementsHandler();
+            displayAlert('success', 'Success', 'Database save succesfully');
+          })
+          .catch((error) => {
+            // handle error
+            displayAlert('danger', 'Error', error.message);
+          });
+      } else {
+        movement.id = Math.round(Math.random() * 10000000);
+        movement.date = dayjs(Date()).format('DD.MM.YYYY');
+        rows.push(movement);
+      }
     },
     [fetchMovementsHandler, displayAlert]
   );
@@ -131,16 +145,23 @@ export function DataContextProvider({ children }) {
   const deleteMovement = useCallback(
     (movementId) => {
       const route = `${api}/${movementId}`;
-      axios
-        .delete(route, authHeaders)
-        .then(() => {
-          fetchMovementsHandler();
-          displayAlert('success', 'Success', 'Database save succesfully');
-        })
-        .catch((error) => {
-          // handle error
-          displayAlert('danger', 'Error', error.message);
-        });
+      if (token !== '') {
+        axios
+          .delete(route, authHeaders)
+          .then(() => {
+            fetchMovementsHandler();
+            displayAlert('success', 'Success', 'Database save succesfully');
+          })
+          .catch((error) => {
+            // handle error
+            displayAlert('danger', 'Error', error.message);
+          });
+      } else {
+        rows.splice(
+          rows.findIndex((mov) => mov.id == movementId),
+          1
+        );
+      }
     },
     [fetchMovementsHandler, displayAlert]
   );
