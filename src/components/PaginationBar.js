@@ -1,30 +1,33 @@
 /* eslint-disable no-plusplus */
-import { React, useState, useContext } from 'react';
+import { React, useState } from 'react';
 import { Pagination, Row } from 'react-bootstrap';
-import DataContext from '../store/DataContext';
 
 function PaginationBar({ pageNumber, handlePage }) {
-  const dataCtx = useContext(DataContext);
-
-  const [...rows] = dataCtx.rows;
-  let active = 1;
+  const [isActive, setIsActive] = useState(1);
   const pageClick = (e) => {
-    handlePage(parseInt(e.target.innerText));
-    active = parseInt(e.target.innerText);
+    handlePage(parseInt(e.target.innerText, 10));
+    setIsActive(parseInt(e.target.innerText, 10));
   };
 
-  let items = [];
-  for (let number = 1; number <= pageNumber; number++) {
-    items.push(
-      <Pagination.Item key={number} active={number === active} onClick={pageClick}>
-        {number}
-      </Pagination.Item>
-    );
+  const numbers = [];
+  // numbers.push(<Pagination.First />);
+  // items.push(<Pagination.Prev />);
+
+  for (let i = 1; i <= pageNumber; i++) {
+    numbers.push(i);
   }
+  // items.push(<Pagination.Next />);
+  // items.push(<Pagination.Last />);
 
   return (
     <Row className="justify-content-center">
-      <Pagination size="sm">{items}</Pagination>
+      <Pagination>
+        {numbers.map((number) => (
+          <Pagination.Item key={number} active={number === isActive} onClick={pageClick}>
+            {number}
+          </Pagination.Item>
+        ))}
+      </Pagination>
     </Row>
   );
 }
