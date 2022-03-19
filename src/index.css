@@ -85,7 +85,9 @@ code {
   background-size: cover;
   height: 90vh;
   text-align: center;
-  opacity: 0.5;
+  opacity: 0.4;
+  min-width: 60%;
+  min-height: 60%;
 }
 
 .logo {

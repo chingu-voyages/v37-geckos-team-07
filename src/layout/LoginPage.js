@@ -31,7 +31,7 @@ function LoginPage(props) {
         props.history.push('/');
       })
       .catch((error) => {
-        const errorDescription = error.response.data.message;
+        const errorDescription = error;
         setErrorMessage(errorDescription);
       });
   };
@@ -51,6 +51,7 @@ function LoginPage(props) {
               value={email}
               onChange={handleEmail}
               className="position-relative"
+              required
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="sign-in-password">
@@ -62,6 +63,7 @@ function LoginPage(props) {
               onChange={handlePassword}
               autoComplete="current-password"
               className="position-relative mt-3"
+              required
             />
           </Form.Group>
           <Form.Group className="d-flex justify-content-center mb-4" controlId="remember-me" />
@@ -78,30 +80,10 @@ function LoginPage(props) {
           </div>
           <p className="mt-5 text-muted">&copy; 2021-2022 geckespence</p>
         </Form>
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
       </Container>
     </div>
   );
 }
 
 export default LoginPage;
-
-//  <div className="LoginPage">
-//       <h1>Login</h1>
-
-//       <form onSubmit={handleLoginSubmit}>
-//         <label>Email:</label>
-//         <input type="text" name="email" value={email} onChange={handleEmail} />
-
-//         <label>Password:</label>
-//         <input type="password" name="password" value={password} onChange={handlePassword} />
-
-//         <button type="submit">Login</button>
-//       </form>
-//       {errorMessage && <p className="error-message">{errorMessage}</p>}
-
-//       <p>Don't have an account yet?</p>
-//       <Link to="/signup" className="button-big">
-//         {' '}
-//         Sign Up
-//       </Link>
-//     </div>

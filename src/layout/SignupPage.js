@@ -11,7 +11,7 @@ const API_URI = process.env.REACT_APP_API_URI;
 function SignupPage(props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [name, setName] = useState('');
+  const [username, setName] = useState('');
   const [errorMessage, setErrorMessage] = useState(undefined);
 
   const handleEmail = (e) => setEmail(e.target.value);
@@ -21,7 +21,7 @@ function SignupPage(props) {
   const handleSignupSubmit = (e) => {
     e.preventDefault();
     // Create an object representing the request body
-    const requestBody = { email, password, name };
+    const requestBody = { username, email, password };
 
     // Make an axios request to the API
     // If POST request is successful redirect to login page
@@ -51,9 +51,10 @@ function SignupPage(props) {
               size="lg"
               placeholder="username"
               autoComplete="username"
-              value={name}
+              value={username}
               onChange={handleName}
               className="position-relative"
+              required
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="sign-in-email-address">
@@ -65,6 +66,7 @@ function SignupPage(props) {
               value={email}
               onChange={handleEmail}
               className="position-relative"
+              required
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="sign-in-password">
@@ -76,6 +78,7 @@ function SignupPage(props) {
               onChange={handlePassword}
               autoComplete="current-password"
               className="position-relative mt-3"
+              required
             />
           </Form.Group>
           <Form.Group className="d-flex justify-content-center mb-4" controlId="remember-me" />

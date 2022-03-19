@@ -19,7 +19,7 @@ function App() {
         <Routes>
           <Route index element={<Landing />} />
           <Route path="landing" element={<Landing />} />
-          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
 
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="/signup" element={<SignupPage />} />
@@ -38,3 +38,8 @@ export default App;
 <Route exact path="dashboard" element={<PrivateRoute />}>
   <Route exact path="/" element={<Home />} />
 </Route>;
+
+// - Added 404 page
+// - Added Login-Signup form
+// - Added Landing page (content TBD?)
+// - Implemented minor styling fixes

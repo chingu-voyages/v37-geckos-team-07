@@ -10,13 +10,13 @@ import { AuthProviderWrapper } from './store/auth.context';
 
 ReactDOM.render(
   <React.StrictMode>
-    <DataContextProvider>
-      <BrowserRouter>
-        <AuthProviderWrapper>
+    <BrowserRouter>
+      <AuthProviderWrapper>
+        <DataContextProvider>
           <App />
-        </AuthProviderWrapper>
-      </BrowserRouter>
-    </DataContextProvider>
+        </DataContextProvider>
+      </AuthProviderWrapper>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );

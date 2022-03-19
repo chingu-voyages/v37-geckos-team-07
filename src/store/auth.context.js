@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
 const API_URI = process.env.REACT_APP_API_URI;
-
 const AuthContext = React.createContext();
 
 function AuthProviderWrapper(props) {
