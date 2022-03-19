@@ -1,39 +1,49 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
+import { useNavigate, Link } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import { signup } from '../services/auth';
 import logo from './Geck-Logo.png';
+import * as PATHS from '../utils/paths';
+import * as USER_HELPERS from '../utils/userToken';
 
-const API_URI = process.env.REACT_APP_API_URI;
+function SignupPage({ authenticate }) {
+  const [form, setForm] = useState({
+    username: '',
+    email: '',
+    password: '',
+  });
+  const { username, email, password } = form;
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
-function SignupPage(props) {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [username, setName] = useState('');
-  const [errorMessage, setErrorMessage] = useState(undefined);
+  function handleInputChange(event) {
+    const { name, value } = event.target;
+    return setForm({ ...form, [name]: value });
+  }
 
-  const handleEmail = (e) => setEmail(e.target.value);
-  const handlePassword = (e) => setPassword(e.target.value);
-  const handleName = (e) => setName(e.target.value);
-
-  const handleSignupSubmit = (e) => {
-    e.preventDefault();
-    // Create an object representing the request body
-    const requestBody = { username, email, password };
-
-    // Make an axios request to the API
-    // If POST request is successful redirect to login page
-    // If the request resolves with an error, set the error message in the state
-    axios
-      .post(`${API_URI}/auth/signup`, requestBody)
-      .then((response) => props.history.push('/login'))
-      .catch((error) => {
-        const errorDescription = error.response.data.message;
-        setErrorMessage(errorDescription);
-      });
-  };
+  function handleFormSubmission(event) {
+    event.preventDefault();
+    const credentials = {
+      username,
+      email,
+      password,
+    };
+    signup(credentials).then((res) => {
+      if (!res.status) {
+        // unsuccessful signup
+        console.error('Signup was unsuccessful: ', res);
+        return setError({
+          message: 'Signup was unsuccessful! Please check the console.',
+        });
+      }
+      // successful signup
+      USER_HELPERS.setUserToken(res.data.accessToken);
+      authenticate(res.data.user);
+      navigate(PATHS.LANDING);
+    });
+  }
 
   return (
     <div>
@@ -41,18 +51,19 @@ function SignupPage(props) {
         <Form
           id="sign-in-form"
           className="form text-center p-3 w-100"
-          onSubmit={handleSignupSubmit}
+          onSubmit={handleFormSubmission}
         >
           <img className="logo-big" src={logo} alt="logo" />
-          <h1 className="mb-4 fs-3 fw-normal text-dark">Please Sign up</h1>
+          <h1 className="mb-4 fs-3 fw-normal text-dark">Please sign up</h1>
           <Form.Group className="mb-3" controlId="sign-in-username">
             <Form.Control
               type="text"
               size="lg"
               placeholder="username"
+              name="username"
               autoComplete="username"
               value={username}
-              onChange={handleName}
+              onChange={handleInputChange}
               className="position-relative"
               required
             />
@@ -62,9 +73,10 @@ function SignupPage(props) {
               type="email"
               size="lg"
               placeholder="email"
+              name="email"
               autoComplete="username"
               value={email}
-              onChange={handleEmail}
+              onChange={handleInputChange}
               className="position-relative"
               required
             />
@@ -75,11 +87,17 @@ function SignupPage(props) {
               size="lg"
               placeholder="password"
               alue={password}
-              onChange={handlePassword}
-              autoComplete="current-password"
+              onChange={handleInputChange}
               className="position-relative mt-3"
               required
             />
+
+            {error && (
+              <div className="error-block">
+                <p>There was an error submiting the form:</p>
+                <p>{error.message}</p>
+              </div>
+            )}
           </Form.Group>
           <Form.Group className="d-flex justify-content-center mb-4" controlId="remember-me" />
           <div className="d-grid">
@@ -95,8 +113,6 @@ function SignupPage(props) {
           </div>
           <p className="mt-5 text-muted">&copy; 2021-2022 geckespence</p>
         </Form>
-
-        {errorMessage && <p className="error-message">{errorMessage}</p>}
       </Container>
     </div>
   );

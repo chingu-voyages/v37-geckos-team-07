@@ -3,6 +3,7 @@ import axios from 'axios';
 import dayjs from 'dayjs';
 import budget from '../utils/data';
 import data from './dataRows';
+import * as USER_HELPERS from '../utils/userToken';
 
 const DataContext = createContext({
   rows: [],
@@ -15,11 +16,10 @@ const DataContext = createContext({
   showAlert: { show: false, variant: '', text: '', headerText: '' },
 });
 
-const api = 'https://geckspence.herokuapp.com/api/movements';
-const token =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjJjZTEyNjM4NWJkYTI0M2I4MGRiYTUiLCJlbWFpbCI6InRlc3Q0NEB0ZXN0LmNvbSIsInVzZXJuYW1lIjoiQW5kcmV5MDIiLCJpYXQiOjE2NDc0MzU3NzAsImV4cCI6MTY0ODY0NTM3MH0.8mKpoUDSizuBGDBypik-exgtL2Xpg_fzAJqiWIlq3gQ';
+const api = `${process.env.REACT_APP_SERVER_URL}/api/movements`;
+const token = USER_HELPERS.getUserToken();
 
-const authHeaders = { headers: { Authorization: `Bearer ${token}` } };
+const authHeaders = { headers: { Authorization: `${token}` } };
 
 export function DataContextProvider({ children }) {
   const [rows, setRows] = useState(data);

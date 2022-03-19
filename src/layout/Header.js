@@ -1,41 +1,37 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Navbar, Container, Nav } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
-import { AuthContext } from '../store/auth.context';
 import logo from './Geck-Logo.png';
+import * as PATHS from '../utils/paths';
 
-function Header() {
-  // Subscribe to the AuthContext to gain access to
-  // the values from AuthContext.Provider `value` prop
-  const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
-
+function Header({ user, handleLogout }) {
   return (
     <Navbar expand="lg" variant="dark" sticky="top">
       <Container fluid>
-        <LinkContainer to="/">
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <LinkContainer to={PATHS.LANDING}>
           <Navbar.Brand className="text-white">
             <img className="logo" src={logo} alt="logo" />
             Geckspence
           </Navbar.Brand>
         </LinkContainer>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
 
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            {isLoggedIn ? (
+            {user ? (
               <>
-                <LinkContainer to="/home">
+                <LinkContainer to={PATHS.PROTECTEDPAGE}>
                   <Nav.Link className="text-white  ps-5">
                     {/* title attribute to make up for layout shift */}
                     Home
                   </Nav.Link>
                 </LinkContainer>
 
-                <LinkContainer to="/dashboard">
+                <LinkContainer to={PATHS.PROTECTEDPAGE1}>
                   <Nav.Link className="text-white  ps-5">Dashboard</Nav.Link>
                 </LinkContainer>
                 <LinkContainer to="/logout">
-                  <Nav.Link className="text-white  ps-5" onClick={logOutUser}>
+                  <Nav.Link className="text-white  ps-5" onClick={handleLogout}>
                     Logout
                     <span>{user.name}</span>
                   </Nav.Link>
@@ -43,12 +39,12 @@ function Header() {
               </>
             ) : (
               <>
-                <LinkContainer to="/login">
+                <LinkContainer to={PATHS.LOGINPAGE}>
                   <Nav.Link to="" className="text-white  ps-5">
                     Log in
                   </Nav.Link>
                 </LinkContainer>
-                <LinkContainer to="/signup">
+                <LinkContainer to={PATHS.SIGNUPPAGE}>
                   <Nav.Link className="text-white  ps-5">Sign Up</Nav.Link>
                 </LinkContainer>
               </>
