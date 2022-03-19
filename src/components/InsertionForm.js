@@ -74,6 +74,9 @@ function InsertionForm() {
               </option>
               <option value="Travel">Travel</option>
               <option value="Bills">Bills</option>
+              <option value="Books">Books</option>
+              <option value="Websites">Websites</option>
+              <option value="Courses">Courses</option>
               <option value="Groceries">Groceries</option>
               <option value="Salary">Salary</option>
             </Form.Select>
