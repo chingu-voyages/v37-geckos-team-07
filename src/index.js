@@ -9,11 +9,11 @@ import { DataContextProvider } from './store/DataContext';
 
 ReactDOM.render(
   <React.StrictMode>
-    <DataContextProvider>
-      <BrowserRouter>
+    <BrowserRouter>
+      <DataContextProvider>
         <App />
-      </BrowserRouter>
-    </DataContextProvider>
+      </DataContextProvider>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );
