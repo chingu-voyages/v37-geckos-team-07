@@ -1,81 +1,47 @@
-# voyage-tasks
+# Geckspence
+## Overview
+This is an app to track  user's incomes and expenses while providing various visualizations on the dashboard section. The app was created for the [Chingu](https://www.chingu.io/) Voyage 37. 
 
-If you are unsure of what should go into the `readme` let this article,
-written by an experienced Chingu, be your starting point -
-[Keys to a well written README](https://tinyurl.com/yk3wubft).
+**LIVE LINK:** [https://geckspence.netlify.app/](https://geckspence.netlify.app/)
 
-And before we go there's "one more thing"! Once you decide what to include
-in your `readme` feel free to replace the text we've provided here.
 
-> Own it & Make it your Own!
+![Gecksense screen](https://user-images.githubusercontent.com/47148325/159114075-bf27c606-2105-400a-873f-3686f6cafc6f.png)
 
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Features
 
-## Available Scripts
+ - User signup/login
 
-In the project directory, you can run:
+ - New record form to submit income/expense into the database
 
-### `npm start`
+    **BACKEND REPO:** [https://github.com/chingu-voyages/v37-geckos-team-07be](https://github.com/chingu-voyages/v37-geckos-team-07be)
+ - Total user balance  calculated based on the history of movements
+ - Click / tap to delete income/expense
+ - Pie chart for every category totals on the main page
+ - History table for movements on the main page
+ - Dashboard page with various graphs/charts 
+ - `TODO`: Set a goal from the dashboard page
+ 
+## Tech used / dependencies
+1.  [React](https://reactjs.org/) (create-react-app)
+2. [Sass](https://sass-lang.com/)
+3. [React Bootstrap](https://react-bootstrap.github.io/)
+4. [React-router-dom](https://reactrouter.com/) 
+5. [React-chartjs-2](https://react-chartjs-2.js.org/) and [Recharts](https://recharts.org/)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Running the project locally
+From the repo:
+1. Clone the project locally
+2. Run `npm install` in your bash\command line
+3. Run `npm start` in your bash\command line
 
-### `npm test`
+## This project is using the airbnb style guide, please follow the steps bellow for installation
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Installation
 
-### `npm run build`
+1.  Install [Prettier](https://prettier.io/) and [ESLint](https://eslint.org/) for your text editor
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2.  Place `.prettierrc.json` and `.eslintrc.json` into the root directory
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+3. Follow  Jeffrey Zhen's [tutorial](https://blog.echobind.com/integrating-prettier-eslint-airbnb-style-guide-in-vscode-47f07b5d7d6a)
