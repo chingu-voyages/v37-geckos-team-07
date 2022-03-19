@@ -3,7 +3,7 @@ import axios from 'axios';
 import dayjs from 'dayjs';
 import budget from '../utils/data';
 import data from './dataRows';
-import { scryRenderedComponentsWithType } from 'react-dom/test-utils';
+// import { scryRenderedComponentsWithType } from 'react-dom/test-utils';
 
 const DataContext = createContext({
   rows: [],
@@ -110,7 +110,7 @@ export function DataContextProvider({ children }) {
         rows.push(movement);
       }
     },
-    [fetchMovementsHandler, displayAlert]
+    [rows, fetchMovementsHandler, displayAlert]
   );
 
   const addExpense = useCallback(
@@ -139,7 +139,7 @@ export function DataContextProvider({ children }) {
         rows.push(movement);
       }
     },
-    [fetchMovementsHandler, displayAlert]
+    [rows, fetchMovementsHandler, displayAlert]
   );
 
   const deleteMovement = useCallback(
@@ -158,12 +158,12 @@ export function DataContextProvider({ children }) {
           });
       } else {
         rows.splice(
-          rows.findIndex((mov) => mov.id == movementId),
+          rows.findIndex((mov) => mov.id === movementId),
           1
         );
       }
     },
-    [fetchMovementsHandler, displayAlert]
+    [rows, fetchMovementsHandler, displayAlert]
   );
 
   const value = useMemo(

@@ -1,5 +1,21 @@
 export default [
   {
+    id: 'wq54cln',
+    category: 'Websites',
+    amount: 600.01,
+    isIncome: true,
+    date: '12.02.2022',
+    description: 'This is some comment to this',
+  },
+  {
+    id: 'wq665ln',
+    category: 'Books',
+    amount: 1200.27,
+    isIncome: true,
+    date: '12.02.2022',
+    description: 'Selling books',
+  },
+  {
     id: 'wq6ocln',
     category: 'Salary',
     amount: 1200.27,
