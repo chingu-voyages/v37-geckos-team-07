@@ -10,7 +10,6 @@ This is an app to track  user's incomes and expenses while providing various vis
 
 ## Features
 
- - User signup/login
 
  - New record form to submit income/expense into the database
 
@@ -20,6 +19,7 @@ This is an app to track  user's incomes and expenses while providing various vis
  - Pie chart for every category totals on the main page
  - History table for movements on the main page
  - Dashboard page with various graphs/charts 
+ - `TODO`: - User signup/login
  - `TODO`: Set a goal from the dashboard page
  
 ## Tech used / dependencies
