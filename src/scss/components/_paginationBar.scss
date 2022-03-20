@@ -1,0 +1,13 @@
+.page-item {
+  .page-link {
+    color: $indigo-300 !important;
+    background-color: white !important;
+    border-color: $indigo-300 !important;
+  }
+  &.active {
+    .page-link {
+      background-color: $indigo-300 !important;
+      color: white !important;
+    }
+  }
+}

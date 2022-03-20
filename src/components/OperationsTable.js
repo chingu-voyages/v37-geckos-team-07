@@ -2,12 +2,14 @@ import { React, useState, useContext } from 'react';
 import { Table, CloseButton as DeleteButton, Alert } from 'react-bootstrap';
 import DeleteModal from './DeleteModal';
 import DataContext from '../store/DataContext';
+import PaginationBar from './PaginationBar';
 
 function OperationsTable() {
   const dataCtx = useContext(DataContext);
 
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedRow, setSelectedRow] = useState({});
+  const [page, setPage] = useState(1);
   const reversedArr = [...dataCtx.rows].reverse();
   const removeItem = (row) => {
     setShowDeleteModal(true);
@@ -20,6 +22,12 @@ function OperationsTable() {
     dataCtx.deleteMovement(selectedRow.id);
     setShowDeleteModal(false);
   };
+  const handlePage = (number) => {
+    setPage(number);
+  };
+  const rowsPerPage = 5;
+  const pageNumber = Math.ceil(reversedArr.length / rowsPerPage);
+  const pageRows = reversedArr.slice((page - 1) * rowsPerPage, page * rowsPerPage);
 
   return (
     <div className="operationsTable__wrapper">
@@ -51,7 +59,7 @@ function OperationsTable() {
           </tr>
         </thead>
         <tbody>
-          {reversedArr.map((el) => (
+          {pageRows.map((el) => (
             <tr
               key={el.id}
               className={`operationsTable__row operationsTable__row-${
@@ -71,6 +79,7 @@ function OperationsTable() {
           ))}
         </tbody>
       </Table>
+      <PaginationBar pageNumber={pageNumber} handlePage={handlePage} />
       {!reversedArr.length && (
         <p className="text-center">No data to display. Please add movements</p>
       )}
