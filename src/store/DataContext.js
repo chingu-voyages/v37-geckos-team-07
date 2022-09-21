@@ -17,7 +17,7 @@ const DataContext = createContext({
 
 const api = 'https://geckspence.herokuapp.com/api/movements';
 const token =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjNiNTkyMDczZmM0NmRhMmM1NDhjOWUiLCJlbWFpbCI6InRlc3Q0NUB0ZXN0LmNvbSIsInVzZXJuYW1lIjoiQW5kcmV5MDIiLCJpYXQiOjE2NDgwNTY2MzMsImV4cCI6MTY2MzYwODYzM30.mmZZtDMFsTgWPeIoQJSXQa0DxRm9JH3pInXOmxXbyp4';
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjNiNTkyMDczZmM0NmRhMmM1NDhjOWUiLCJlbWFpbCI6InRlc3Q0NUB0ZXN0LmNvbSIsInVzZXJuYW1lIjoiQW5kcmV5MDIiLCJpYXQiOjE2NjM3Mzk0MDYsImV4cCI6MTY3OTI5MTQwNn0.BCPHQyvkDow8aYdv15t5RB4_y-c7wu2iyWmV7834RHg';
 
 const authHeaders = { headers: { Authorization: `Bearer ${token}` } };
 
